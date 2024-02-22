@@ -31,6 +31,6 @@
 [submodule "bundle/shswitch"]
 	path = bundle/shswitch
 	url = https://github.com/kuznetsss/shswitch.git
-[submodule "swapit"]
+[submodule "bundle/swapit"]
 	path = bundle/swapit
 	url = https://github.com/mjbrownie/swapit.git
