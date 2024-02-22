@@ -103,12 +103,7 @@ hi doxygenHtmlBoldUnderlineItalic term=bold,underline,italic cterm=bold,underlin
 hi doxygenHtmlItalic term=italic cterm=italic gui=italic
 hi doxygenHtmlUnderline term=underline cterm=underline gui=underline
 hi doxygenHtmlUnderlineItalic term=underline,italic cterm=underline,italic gui=underline,italic
-hi level10c ctermfg=248 guifg=#a8a8a8
-hi level11c ctermfg=121 guifg=#87ffaf
-hi level12c ctermfg=229 guifg=#ffffaf
-hi level13c ctermfg=81 guifg=#5fdfff
-hi level15c ctermfg=224 guifg=#ffdfdf
-hi level16c ctermfg=15 guifg=#ffffff
+
 hi level1c ctermfg=130 guifg=#af5f00
 hi level2c ctermfg=12 guifg=#0000ff
 hi level3c ctermfg=242 guifg=#666666
@@ -118,6 +113,13 @@ hi level6c ctermfg=10 guifg=#00ff00
 hi level7c ctermfg=11 guifg=#ffff00
 hi level8c ctermfg=13 guifg=#ff00ff
 hi level9c ctermfg=7 guifg=#c0c0c0
+hi level10c ctermfg=248 guifg=#a8a8a8
+hi level11c ctermfg=121 guifg=#87ffaf
+hi level12c ctermfg=229 guifg=#ffffaf
+hi level13c ctermfg=81 guifg=#5fdfff
+hi level15c ctermfg=224 guifg=#ffdfdf
+hi level16c ctermfg=15 guifg=#ffffff
+
 hi makeBString ctermfg=82 guifg=#5fff00
 hi makeCommands ctermfg=196 guifg=#ff0000
 hi makeConfig ctermfg=199 guifg=#ff00af
