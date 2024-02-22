@@ -1,0 +1,12 @@
+[submodule "bundle/committia.vim"]
+	path = bundle/committia.vim
+	url = https://github.com/rhysd/committia.vim.git
+[submodule "bundle/csv.vim"]
+	path = bundle/csv.vim
+	url = https://github.com/chrisbra/csv.vim
+[submodule "bundle/fzf.vim"]
+	path = bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "bundle/gundo.vim"]
+	path = bundle/gundo.vim
+	url = https://github.com/sjl/gundo.vim.git/
