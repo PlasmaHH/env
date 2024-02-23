@@ -1,0 +1,37 @@
+diff --git a/plugin/mark.vim b/plugin/mark.vim
+index df5d2c1..2eff6d1 100644
+--- a/plugin/mark.vim
++++ b/plugin/mark.vim
+@@ -263,10 +263,10 @@ if exists('g:mw_no_mappings')
+ endif
+ 
+ if !hasmapto('<Plug>MarkSet', 'n')
+-	nmap <unique> <Leader>m <Plug>MarkSet
++	nmap <unique> <Leader>l <Plug>MarkSet
+ endif
+ if !hasmapto('<Plug>MarkSet', 'x')
+-	xmap <unique> <Leader>m <Plug>MarkSet
++	xmap <unique> <Leader>l <Plug>MarkSet
+ endif
+ " No default mapping for <Plug>MarkIWhiteSet.
+ if !hasmapto('<Plug>MarkRegex', 'n')
+@@ -276,15 +276,15 @@ if !hasmapto('<Plug>MarkRegex', 'x')
+ 	xmap <unique> <Leader>r <Plug>MarkRegex
+ endif
+ if !hasmapto('<Plug>MarkClear', 'n')
+-	nmap <unique> <Leader>n <Plug>MarkClear
++	nmap <unique> <Leader>k <Plug>MarkClear
+ endif
+ " No default mapping for <Plug>MarkAllClear.
+ " No default mapping for <Plug>MarkConfirmAllClear.
+ " No default mapping for <Plug>MarkToggle.
+ 
+-if !hasmapto('<Plug>MarkSearchCurrentNext', 'n')
+-	nmap <unique> <Leader>* <Plug>MarkSearchCurrentNext
+-endif
++"if !hasmapto('<Plug>MarkSearchCurrentNext', 'n')
++"	nmap <unique> <Leader>* <Plug>MarkSearchCurrentNext
++"endif
+ if !hasmapto('<Plug>MarkSearchCurrentPrev', 'n')
+ 	nmap <unique> <Leader># <Plug>MarkSearchCurrentPrev
+ endif

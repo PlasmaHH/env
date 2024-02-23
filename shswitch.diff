@@ -1,0 +1,43 @@
+diff --git a/shswitch/plugin/shswitch.vim b/shswitch/plugin/shswitch.vim
+index 862a094..d268296 100644
+--- a/shswitch/plugin/shswitch.vim
++++ b/shswitch/plugin/shswitch.vim
+@@ -37,6 +37,7 @@ endfunction
+ function! g:SHSwitch()
+     let l:current_file_ext = expand('%:e')
+     let l:current_file_name = fnamemodify(expand("%:r"), ":t")
++    let l:current_full_file_name = expand("%:r")
+     let l:target_extensions = []
+     let l:target_file_variants = []
+ 
+@@ -51,14 +52,26 @@ function! g:SHSwitch()
+         return
+     endif
+ 
++    let l:result = ""
++
++    for e in l:target_extensions
++	let l:f = l:current_full_file_name . '.' . e
++        if filereadable(f)
++	    let l:result = l:f
++	    break
++	endif
++    endfor
++
+     for e in l:target_extensions
+         call add(l:target_file_variants, l:current_file_name . '.' . e)
+     endfor
+ 
+-    let l:result = FindFile(expand('%:p:h'), l:target_file_variants)
+-    if l:result == 'None'
+-        echo "SHSwitch: Can't find relative file"
+-        return
++    if len(l:result) == 0
++	let l:result = FindFile(expand('%:p:h'), l:target_file_variants)
++	if l:result == 'None'
++	    echo "SHSwitch: Can't find relative file"
++	    return
++	endif
+     endif
+ 
+     if &autowrite

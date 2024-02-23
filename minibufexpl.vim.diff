@@ -1,0 +1,16 @@
+diff --git a/minibufexpl.vim/plugin/minibufexpl.vim b/minibufexpl.vim/plugin/minibufexpl.vim
+index e2b3348..3d2d695 100644
+--- a/minibufexpl.vim/plugin/minibufexpl.vim
++++ b/minibufexpl.vim/plugin/minibufexpl.vim
+@@ -658,9 +658,9 @@ function! <SID>StartExplorer(curBufNum)
+ 
+   " If you press return, o or e in the -MiniBufExplorer- then try
+   " to open the selected buffer in the previous window.
+-  nnoremap <buffer> o       :call <SID>MBESelectBuffer(0)<CR>:<BS>
++  nnoremap <buffer> o       :call <SID>MBESelectBuffer(0)<CR>:MBEFocus<CR>:<BS>
+   nnoremap <buffer> e       :call <SID>MBESelectBuffer(0)<CR>:<BS>
+-  nnoremap <buffer> <CR>    :call <SID>MBESelectBuffer(0)<CR>:<BS>
++  nnoremap <buffer> <CR>    :call <SID>MBESelectBuffer(0)<CR>:MBEToggle<CR>:<BS>
+   " If you press s in the -MiniBufExplorer- then try
+   " to open the selected buffer in a split in the previous window.
+   nnoremap <buffer> s       :call <SID>MBESelectBuffer(1)<CR>:<BS>

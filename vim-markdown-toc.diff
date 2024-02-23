@@ -1,0 +1,12 @@
+diff --git a/ftplugin/markdown.vim b/ftplugin/markdown.vim
+index c8bcaaf..8b57d71 100644
+--- a/ftplugin/markdown.vim
++++ b/ftplugin/markdown.vim
+@@ -424,6 +424,7 @@ function! s:UpdateToc()
+     endif
+ 
+     call winrestview(l:winview)
++    syn sync fromstart
+ endfunction
+ 
+ function! s:DeleteExistingToc()
