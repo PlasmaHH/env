@@ -115,3 +115,6 @@
 [submodule "bundle/ScrollColors"]
 	path = bundle/ScrollColors
 	url = https://github.com/vim-scripts/ScrollColors.git
+[submodule "bundle/sparkup"]
+	path = bundle/sparkup
+	url = https://github.com/rstacruz/sparkup.git
