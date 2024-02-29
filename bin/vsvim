@@ -1,0 +1,14 @@
+#!/bin/bash
+FILE="$1"
+LINE="$2"
+FILE="${FILE//\\//}"
+FILE="${FILE//W://home/lbt/}"
+FILE="${FILE//w://home/lbt/}"
+
+cd $(dirname "${FILE}")
+root=$(git rev-parse --show-toplevel)
+cd "$root"
+
+gvim --servername VimStudio --remote-tab-silent +"execute 'normal! $LINE|'" "${FILE}"
+
+# vim: tabstop=4 shiftwidth=4 noexpandtab

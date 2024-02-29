@@ -1,0 +1,103 @@
+#!/bin/bash
+#
+ORIG1=$1
+ARGV1=$1
+WSL=0
+
+if [[ "${1,,}" = w:* ]];
+then
+    echo "1=$1"
+    ARGV1=${1//\\/\/}
+    ARGV1=${ARGV1//W:/${HOME}}
+    ARGV1=${ARGV1//w:/${HOME}}
+    echo "ARGV1=$ARGV1"
+    WSL=1
+    set -- ${ARGV1}
+
+    FILEPART=${ARGV1}
+    LINEPART=""
+    if  [[ "$ARGV1" =~ ^(.*)[:\(]([0-9]*)$ ]];
+    then
+	FILEPART=${BASH_REMATCH[1]}
+	LINEPART=":"${BASH_REMATCH[2]}
+    fi
+
+    if [[ ! -f ${FILEPART} ]];
+    then
+	FILEPART=${FILEPART//\//\/*}
+	shopt -s nocaseglob
+	FILEPART=(${FILEPART})
+	shopt -u nocaseglob
+	echo "FILEPART=$FILEPART"
+	if [[ ! -f ${FILEPART} ]];
+	then
+	    echo "FAILED TO CONVERT ${ORIG1} to ${FILEPART}"
+	    exit
+	fi
+	set -- ${FILEPART}${LINEPART}
+    fi
+
+fi
+
+#exit
+
+CP=$(echo $1|grep "http://.*codepad\.org/")
+
+if [ "$CP" ]
+then
+    URL=$1
+    FN=$(echo $URL|sed 's/http:\/\/.*codepad.org\///')
+    EXE="codepad_${FN}"
+    export CODEPAD_TARGET_EXE=$EXE
+    FN="codepad_${FN}.cxx"
+    if [[ -f "$FN" ]]; then
+	exec vi "$FN"
+    fi
+    wget -O "$FN" "$URL/raw.cpp"
+    dos2unix "$FN"
+    sed -i "$FN" -e 's/\s*$//'
+    exec vi "$FN"
+fi
+
+ID=$(echo $1|grep "http://.*ideone\.com/")
+if [ "$ID" ]
+then
+    URL=$1
+    FNPC=$(echo $URL|sed 's/http:\/\/.*ideone.com\///')
+    EXE="ideone_${FN}"
+    export CODEPAD_TARGET_EXE=$EXE
+    FN="ideone_${FNPC}.cxx"
+    if [[ -f "$FN" ]]; then
+	exec vi "$FN"
+    fi
+    wget -O "$FN" "http://ideone.com/plain/${FNPC}"
+    dos2unix "$FN"
+    sed -i "$FN" -e 's/\s*$//'
+    exec vi "$FN"
+fi
+
+set -x
+#if [ "$(echo $1|grep :[0-9]*$)" ]
+if  [[ "$1" =~ ^(.*)[:\(]([0-9]*)$ ]];
+then
+    FILE=${BASH_REMATCH[1]}
+    LINE=${BASH_REMATCH[2]}
+#    par=$(echo $1|sed 's/:\([0-9]*\)$/ +\1/')
+    shift
+    if [[ -n "$TMUX" ]];
+    then
+	exec /usr/bin/vim "$FILE" "+$LINE" "$@"
+    else
+	VIMCMD="/usr/bin/vim '$FILE' '+$LINE' ${@@Q}"
+	exec tmux -2 -f ~/.tmux.vim.conf new "${VIMCMD}"
+    fi
+else
+    if [[ -n "$TMUX" ]];
+    then
+	exec /usr/bin/vim-nox11 "$@"
+    else
+	VIMCMD="/usr/bin/vim ${@@Q}"
+	exec tmux -2 -f ~/.tmux.vim.conf new "${VIMCMD}"
+    fi
+fi
+

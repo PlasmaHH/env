@@ -1,0 +1,2 @@
+#!/bin/bash
+vi -c 'set diffopt+=iwhite' -d "$@"
