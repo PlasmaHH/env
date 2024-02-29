@@ -1,0 +1,42 @@
+diff --git a/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim b/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
+index 07fe913..f251cfd 100644
+--- a/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
++++ b/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
+@@ -244,7 +244,8 @@ function! vimfiler#mappings#define_default_mappings(context) abort "{{{
+ 
+   " Execute or change directory.
+   execute s:nowait_nmap() '<Enter>'
+-        \ '<Plug>(vimfiler_cd_or_edit)'
++        \ '<Plug>(vimfiler_expand_or_edit)'
++"        \ '<Plug>(vimfiler_cd_or_edit)'
+   execute s:nowait_nmap() 'o'
+         \ '<Plug>(vimfiler_expand_or_edit)'
+   execute s:nowait_nmap() 'l'
+@@ -345,8 +346,12 @@ function! vimfiler#mappings#define_default_mappings(context) abort "{{{
+         \ '<Plug>(vimfiler_expand_tree_recursive)'
+   execute s:nowait_nmap() 'I'
+         \ '<Plug>(vimfiler_cd_input_directory)'
++  execute s:nowait_nmap() '<LeftMouse>'
++        \ '<LeftMouse>t' 
++  " <Plug>(vimfiler_expand_tree)'
+   execute s:nowait_nmap() '<2-LeftMouse>'
+-        \ '<Plug>(vimfiler_double_click)'
++        \ '<Plug>(vimfiler_expand_or_edit)'
++"        \ '<Plug>(vimfiler_double_click)'
+ 
+   " pushd/popd
+   execute s:nowait_nmap() 'Y'
+@@ -366,6 +371,13 @@ function! s:nowait_nmap() abort "{{{
+         \ '<nowait>' : '')
+ endfunction "}}}
+ 
++function! s:nowait_nnoremap() abort "{{{
++  return 'nnoremap <buffer>'
++        \ . ((v:version > 703 || (v:version == 703 && has('patch1261'))) ?
++        \ '<nowait>' : '')
++endfunction "}}}
++
++
+ function! vimfiler#mappings#smart_cursor_map(directory_map, file_map) abort "{{{
+   let filename = vimfiler#get_filename()
+   let file = vimfiler#get_file(b:vimfiler)

@@ -1,7 +1,7 @@
-diff --git a/sparkup.py b/sparkup.py
+diff --git a/bundle/sparkup/sparkup.py b/bundle/sparkup/sparkup.py
 index b545df2..600d385 100755
---- a/sparkup.py
-+++ b/sparkup.py
+--- a/bundle/sparkup/sparkup.py
++++ b/bundle/sparkup/sparkup.py
 @@ -1,4 +1,4 @@
 -#!/usr/bin/env python
 +#!/usr/bin/env python3
