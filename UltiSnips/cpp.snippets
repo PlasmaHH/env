@@ -1,0 +1,664 @@
+extends c
+
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+snippet beginend "$1.begin(), $1.end() (beginend)"
+${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
+endsnippet
+
+snippet ns "namespace .. (namespace)"
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}
+{
+	$0
+} // of${1/(.+)|(.*)/(?1:: anonymous)/} namespace $1
+endsnippet
+
+snippet map "std::map (map)"
+std::map<${1:key}, ${2:value}> ${3:map};
+endsnippet
+
+snippet vec "std::vector (v)"
+std::vector<${1:T}> ${2:vec};
+endsnippet
+
+snippet tp "template <typename ..> (template)"
+template <typename ${1:_InputIter}>
+endsnippet
+
+
+snippet set
+std::set<${1:key}> ${2:set};
+endsnippet
+
+snippet list
+std::list<${1:T}> ${2:lis};
+endsnippet
+
+# Class
+snippet class
+class ${1:`!p snip.rv = snip.basename or "name"`}
+{
+private:
+protected:
+public:
+	${1/(\w+).*/$1/} (${2:arguments});
+	~${1/(\w+).*/$1/} ();
+};
+endsnippet
+
+snippet templ
+template<class ${1:T}>
+class ${2:`!p snip.rv = snip.basename or "name"`}
+{
+private:
+protected:
+public:
+	$2 (${3: /*args*/ })
+	{
+	}
+}
+endsnippet
+
+# templates with menu to chose amount of params
+snippet templx "template<class T>"
+template<class ${1:T}>
+class ${2:`!p snip.rv = snip.basename or "name"`}
+{
+private:
+protected:
+public:
+	$2 (${3: /*args*/ })
+	{
+	}
+}
+endsnippet
+
+snippet templx "template<class T, class U>"
+template<class ${1:T}, class ${2:U}>
+class ${3:`!p snip.rv = snip.basename or "name"`}
+{
+private:
+protected:
+public:
+	$3 (${4: /*args*/ })
+	{
+	}
+}
+endsnippet
+
+snippet templx "template<class T, class U, class V>"
+template<class ${1:T}, class ${2:U}, class ${3:V}>
+class ${4:`!p snip.rv = snip.basename or "name"`}
+{
+private:
+protected:
+public:
+	$4(${5: /*args*/ })
+	{
+	}
+}
+endsnippet
+
+# predefined simple cases of template functions
+snippet tempf
+template<class ${1:T}>
+${2:void} ${3:function_name}(${4})
+{
+	${5:/* code */}
+}
+endsnippet
+
+snippet tempf1
+template<class ${1:T}>
+${2:void} ${3:function_name}( const $1& ${4} )
+{
+	${5:/* code */}
+}
+endsnippet
+
+snippet tempf2
+template<class ${1:T}, class ${2:U}>
+${3:void} ${4:function_name}( const $1& ${5}, const $2& ${6} )
+{
+	${7:/* code */}
+}
+endsnippet
+
+# preview template functions with const ref params
+snippet tempfx "template<class T> void f( )"
+template<class ${1:T}>
+${2:void} ${3:function_name}(${4})
+{
+	${5:/* code */}
+}
+endsnippet
+
+snippet tempfx "template<class T> void f( const T& )"
+template<class ${1:T}>
+${2:void} ${3:function_name}( const $1& ${4} )
+{
+	${5:/* code */}
+}
+endsnippet
+
+snippet tempfx "template<class T, class U> void f( const T&, const U& )"
+template<class ${1:T}, class ${2:U}>
+${3:void} ${4:function_name}( const $1& ${5:t}, const $2& ${6:u} )
+{
+	${7:/* code */}
+}
+endsnippet
+
+snippet tempfx "template<class T> void f( const T&, const T& )"
+template<class ${1:T}>
+${2:void} ${3:function_name}( const $1& ${4:t0}, const $1& ${5:t1} )
+{
+	${6:/* code */}
+}
+endsnippet
+
+# preview the same as above but this time not with const to ref params but copies
+snippet tempfx "template<class T> void f( T& )"
+template<class ${1:T}>
+${2:void} ${3:function_name}( $1& ${4} )
+{
+	${5:/* code */}
+}
+endsnippet
+
+snippet tempfx "template<class T, class U> void f( T, U )"
+template<class ${1:T}, class ${2:U}>
+${3:void} ${4:function_name}( $1 ${5:t}, $2 ${6:u} )
+{
+	${7:/* code */}
+}
+endsnippet
+
+snippet tempfx "template<class T> void f( T, T )"
+template<class ${1:T}>
+${2:void} ${3:function_name}( $1 ${4:t0}, $1 ${5:t1} )
+{
+	${6:/* code */}
+}
+endsnippet
+
+# other stuff
+snippet	try
+try
+{
+	${1:/*code*/}
+}
+catch( const ${2:vwd::exception}& )
+{
+}
+catch( const ${3:std::exception}& e )
+{
+}
+catch( ${4:...} )
+{
+}
+endsnippet
+
+snippet switch
+switch( ${1:/*on*/} )
+{
+	case ${2:/*case*/}:
+		break;
+	default:
+		break;
+}
+endsnippet
+
+# various operators shortcuts
+snippet op<<
+std::ostream& operator<<( std::ostream& out, const ${1:T}& ${2:v} )
+{
+	out << $2.${3}
+	return out;
+}
+endsnippet
+
+snippet op&&
+bool operator&&( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} && r.$2;
+}
+endsnippet
+
+snippet op||
+bool operator||( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} || r.$2;
+}
+endsnippet
+
+snippet op^
+bool operator^( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} ^ r.$2;
+}
+endsnippet
+
+snippet op&
+bool operator&( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} & r.$2;
+}
+endsnippet
+
+snippet op|
+bool operator|( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} | r.$2;
+}
+endsnippet
+
+snippet op<
+bool operator<( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} < r.$2;
+}
+endsnippet
+
+snippet op<=
+bool operator<=( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} <= r.$2;
+}
+endsnippet
+
+snippet op>
+bool operator>( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} > r.$2;
+}
+endsnippet
+
+snippet op>=
+bool operator>=( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} >= r.$2;
+}
+endsnippet
+
+snippet op==
+bool operator==( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} == r.$2;
+}
+endsnippet
+
+snippet op!=
+bool operator!=( const ${1:T}& l, const $1& r )
+{
+	return l.${2:member} != r.$2;
+}
+endsnippet
+
+
+snippet op+
+$1 operator+( const ${1:T}& l, const $1& r )
+{
+	$1 tmp(l);
+	${2}tmp += r;
+	return tmp;
+}
+endsnippet
+
+snippet op-
+$1 operator-( const ${1:T}& l, const $1& r )
+{
+	$1 tmp(l);
+	${2}tmp -= r;
+	return tmp;
+}
+endsnippet
+
+# multiplication operator
+snippet op*
+$1 operator*( const ${1:T}& l, const $1& r )
+{
+	${2:/*code*/}
+}
+endsnippet
+
+# now comes various member operators, we assume they are also defined inline
+# dereference operator (unary *)
+snippet opd
+${1:T}& operator*( )
+{
+	return ${2}
+}
+endsnippet
+
+snippet op=
+$1& operator=( const ${1:T}& other )
+{
+	${2:member} = other.$2;
+	return *this;
+}
+endsnippet
+
+snippet op[]
+${1:T}& operator[]( size_t idx )
+{
+	return ${2}[idx];
+}
+endsnippet
+
+snippet op->
+${1:T}* operator->( )
+{
+	return ${2};
+}
+endsnippet
+
+# prefix operator++
+snippet op++
+${1:T}& operator++( )
+{
+	${2:/*code*/}
+	return *this;
+}
+endsnippet
+
+# postfix operator++
+snippet ++op
+${1:T} operator++( int )
+{
+	T tmp(*this);
+	${2:/*code*/}
+	return tmp;
+}
+endsnippet
+
+snippet opT
+operator ${1:T} ( )
+{
+	return ${2:/*code*/}
+}
+endsnippet
+
+snippet op()
+${1:T} operator()( ${2:T} ${3:t} )
+{
+	${4:/*code*/}
+}
+endsnippet
+
+# some cassts
+snippet scast
+static_cast<${1:T}>(${2}
+endsnippet
+
+snippet rcast
+reinterpret_cast<${1:T}>(${2}
+endsnippet
+
+snippet ccast
+const_cast<${1:T}>(${2}
+endsnippet
+
+snippet pcast
+vwd::poly_cast<${1:T}>(${2}
+endsnippet
+
+snippet ucast
+vwd::union_cast<${1:T}>(${2}
+endsnippet
+
+snippet __PRE
+__PRETTY_FUNCTION__
+endsnippet
+
+snippet bark
+std::cout << __PRETTY_FUNCTION__ << '\n';
+endsnippet
+
+snippet rebind
+template<class U>
+struct rebind
+{
+	typedef ${1:templ}<U> other;
+};
+${2}
+endsnippet
+
+snippet ET
+VWD_EXPECT_TRUE(
+endsnippet
+
+snippet EF
+VWD_EXPECT_FALSE(
+endsnippet
+
+snippet private:
+private:
+protected:
+public:
+${1}
+endsnippet
+
+snippet coi
+${1:i}($1_),${2}
+endsnippet
+
+snippet coI
+${1:i}($1_)${2}
+endsnippet
+
+snippet as
+${1:var}.${2:i} = $2;${0}
+endsnippet
+
+snippet coio
+${1:i}(other.$1),${2}
+endsnippet
+
+snippet coim
+${1:i}(std::move(other.$1)),${2}
+endsnippet
+
+snippet aoio
+${1:i} = other.$1;${2}
+endsnippet
+
+
+
+snippet dump
+std::cout << "${1:var} = " << $1 << "\n";
+${2}
+endsnippet
+
+
+snippet sdump
+std::cout << "${1:var} = '" << $1 << "'\n";
+${2}
+endsnippet
+
+snippet throw
+VWD_THROW(vwd::exception,VWD_ERROR(VWD_ECLASS_${1:LIB},${2:VWD_ERROR},VWD_ECOMP_${3:LIBVWD},"${4}"${5});$0
+endsnippet
+
+snippet throws
+VWD_THROW(vwd::system_exception,${1:errno},VWD_ERROR(VWD_ECLASS_${2:LIB},${3:VWD_ERROR},VWD_ECOMP_${4:LIBVWD},"${5}"${6});$0
+endsnippet
+
+snippet throwx
+VWD_THROW(vwd::exception,`!p if not snip.c: snip.rv = str(random.randint(1000000000,9999999999))`,"${1}"${2});$0
+endsnippet
+
+snippet throwxs
+VWD_THROW(vwd::system_exception,`!p if not snip.c: snip.rv = str(random.randint(1000000000,9999999999))`,${1:errno},"${2}"${3});$0
+endsnippet
+
+snippet rnd "expand to random number" w
+`!p if not snip.c: snip.rv = str(random.randint(1000000000,9999999999))`
+endsnippet
+
+
+snippet VWD_ERROR
+VWD_ERROR(VWD_ECLASS_${1:LIB},${2:VWD_ERROR},VWD_ECOMP_${3:LIBVWD},${4})${5}
+endsnippet
+
+snippet cstr
+const std::string& ${0}
+endsnippet
+
+snippet str
+std::string ${0}
+endsnippet
+
+snippet getl
+while( std::getline(${1:stream},${2:line}) )
+{
+	${0}
+}
+endsnippet
+
+snippet wrap
+${1:T} ${2:function}( $0) { return ${3:obj}.$2(); }
+endsnippet
+
+snippet cwrap
+${1:T} ${2:function}( $0) const { return ${3:obj}.$2(); }
+endsnippet
+
+snippet addg
+add(sym,fid::${1:XXX},msg->$1);
+endsnippet
+
+snippet addutp
+add(sym,fid::${1:XXX},msg->get_$1());
+endsnippet
+
+snippet getutp
+${1:uint32_t} get_${2:XXX}( ) const { return vwd::endianess::from_big($2); }
+endsnippet
+
+snippet getutps
+vwd::vstring get_${1:XXX}( ) const { return vwd::vstring($1,strnlen($1,sizeof($1))); }
+endsnippet
+
+snippet getutpt
+vwd::tagged<vwd::vstring,utp::time_tag> get_${1:XXX}( ) const { return vwd::tagged<vwd::vstring,utp::time_tag>($1,strnlen($1,sizeof($1))); }
+endsnippet
+
+snippet getutpD
+vwd::tagged<vwd::vstring,utp::date_tag> get_${1:XXX}( ) const { return vwd::tagged<vwd::vstring,utp::date_tag>($1,strnlen($1,sizeof($1))); }
+endsnippet
+
+snippet getutpnt
+vwd::tagged<vwd::tag_wrapper<uint32_t>,utp::numeric_time_tag> get_${1:XXX}( ) const { return vwd::tagged<vwd::tag_wrapper<uint32_t>,utp::numeric_time_tag>( vwd::endianess::from_big($1)); }$0
+endsnippet
+
+snippet getutpnD
+vwd::tagged<vwd::tag_wrapper<uint32_t>,utp::numeric_date_tag> get_${1:XXX}( ) const { return vwd::tagged<vwd::tag_wrapper<uint32_t>,utp::numeric_date_tag>( vwd::endianess::from_big($1)); }$0
+endsnippet
+
+snippet getutpd
+vwd::decimal<int32_t,int8_t> get_${1:XXX}( ) const
+{
+	return vwd::make_decimal(vwd::endianess::from_big($1),- vwd::endianess::from_big(${2:$1}ScaleCode));
+}${0}
+endsnippet
+
+snippet getutpdx
+vwd::decimal<int64_t,int8_t> get_${1:XXX}( ) const
+{
+	return vwd::make_decimal(vwd::endianess::from_big($1),- vwd::endianess::from_big(${2:$1}ScaleCode));
+}${0}
+endsnippet
+
+
+
+snippet "= 0"
+= nullptr;
+endsnippet
+
+snippet "= 0;"
+= nullptr;
+endsnippet
+
+snippet This
+${1:T}* This() { return static_cast<$1*>(this); }
+const $1* This() const { return static_cast<const $1*>(this); }
+endsnippet
+
+
+snippet vwdlog
+vwd_log(vwd::area::misc,vwd::level::notice,"${1:message}"${2});
+$0
+endsnippet
+
+snippet dcount
+public vwd::debug_counted<${1:T}>
+endsnippet
+
+snippet intr
+boost::intrusive_ptr<${1:T}>
+endsnippet
+
+snippet ffield
+${1:std::string} ${2:name};
+bool null_$2 = true;$0
+endsnippet
+
+snippet fnull
+entry.null_${1} = dict.SecurityDefinition.$1.is_null();
+endsnippet
+
+snippet dict
+vwd::data::fast::dict<${1:uint32_t}> ${2:Name};
+$2.reset();$0
+endsnippet
+
+snippet madd
+add(fid::${1},null_$1,$1,isym,pool,m);$0
+endsnippet
+
+snippet ndot
+n["${1}"]=$1;
+endsnippet
+
+snippet attr
+const std::string& ${1:attr} = xml::attr(attributes,"$1");
+endsnippet
+
+snippet forr "for( auto a : b )"
+for( auto& ${1:a} : ${2:cont} )
+{
+	$0
+}
+endsnippet
+
+# Custom For Loop
+snippet fora "for( a=c.begin()..."
+for( auto ${1:it} = ${2:container}.begin(); $1 != $2.end(); ++$1 )
+{
+	${3:/* code */}
+}
+endsnippet
+
+snippet node
+node["${1:attr}"] = ${2:$1};
+endsnippet
+
+snippet btdef
+typedef ${1:base_type}::${2:blah_type} $2;
+endsnippet
+
+snippet warn_unused
+[[gnu::warn_unused_result]]
+endsnippet
+
+snippet cns "" w
+std::chrono::nanoseconds
+endsnippet
+
+snippet testlabel
+__asm__ volatile ("testlabel0:");
+__asm__ volatile ("testlabel1:");
+endsnippet
+# vim: tabstop=4 shiftwidth=4 noexpandtab ft=snippets

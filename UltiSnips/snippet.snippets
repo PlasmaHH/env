@@ -1,0 +1,19 @@
+#########################
+# SNIPPETS for SNIPPETS #
+#########################
+
+# We use a little hack so that the snippet is expanded
+# and parsed correctly
+snippet snip "Snippet definition" !
+`!p snip.rv = "snippet"` ${1:Tab_trigger} "${2:Description}" ${3:!b}
+$0
+`!p snip.rv = "endsnippet"`
+endsnippet
+
+# snippets for making snippets :)
+snippet snip
+	snippet ${1:trigger}
+		${2}
+snippet msnip
+	snippet ${1:trigger} ${2:description}
+		${3}

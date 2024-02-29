@@ -1,0 +1,356 @@
+###########################################################################
+#                            TEXTMATE SNIPPETS                            #
+###########################################################################
+
+#! header
+snippet #! "Shebang header for python scripts" b
+#!/usr/bin/env python3
+# encoding: utf-8
+$0
+endsnippet
+
+snippet ##! "Shebang header for python scripts" b
+#!/usr/bin/env python3
+# encoding: utf-8
+$0
+# vim: tabstop=4 shiftwidth=4 expandtab ft=python
+endsnippet
+
+snippet ifmain "ifmain" b
+if __name__ == '__main__':
+	${1:main()}$0
+endsnippet
+
+
+##########
+# COMMON #
+##########
+
+#vdb.util.log(f"${1}",${2}, level=vdb.util.Loglevel.${3:info})$0
+snippet log
+vdb.util.log(f"${1:`!p
+import re
+ret = snip.v.text
+if( len(ret) > 0 and ret[-1] == "\n" ):
+    t[0]="\n"
+ret = ret.strip()
+ret = ret.strip('"')
+ret = re.sub( r'print\(f*"(.*)"\)', r'\1', ret )
+snip.rv = ret
+`}",${2} level=vdb.util.Loglevel.${3:info})$0
+endsnippet
+
+
+# The smart def and smart class snippets use a global option called
+# "g:ultisnips_python_style" which, if set to "doxygen" will use doxygen
+# style comments in docstrings.
+
+global !p
+def get_args(arglist, snip):
+    args = [arg.split('=')[0].strip() for arg in arglist.split(',') if arg]
+    args = [arg for arg in args if arg and arg != "self"]
+
+    if args:
+        snip += ""
+
+    for arg in args:
+        style = snip.opt("g:ultisnips_python_style", "normal")
+        if style == "doxygen":
+            snip += "@param %s TODO" % arg
+        else:
+            snip += ":%s: TODO" % arg
+    return args
+endglobal
+
+snippet class "smart class" b
+class ${1:MyClass}(${2:object}):
+	""" ${3:Docstring for $1 }"""
+
+	def __init__(self$4):
+		""" ${5:TODO: Fill me in}`!p
+snip.rv = ""
+snip >> 2
+
+args = get_args(t[4], snip)
+
+if args:
+    snip += '"""'
+else:
+    snip.rv += ' """'
+
+for sup in t[2].split(","):
+    sup = sup.strip()
+    snip += sup + ".__init__(self)"
+
+for arg in args:
+    snip += "self._%s = %s" % (arg, arg)
+`
+		$0
+endsnippet
+
+snippet def "smart def" b
+def ${1:function}(${2:self}):
+	""" ${3:TODO: Docstring for $1}`!p
+snip.rv = "" # Force update
+snip >> 1
+
+args = get_args(t[2], snip)
+
+`${4:
+
+	`!p
+snip.rv = "" # Force update
+style = snip.opt("g:ultisnips_python_style", "normal")
+
+if style == "doxygen":
+    snip.rv = "@return"
+else:
+    snip.rv = ":returns:"` ${5:TODO}
+    }"""
+	${0:pass}
+
+endsnippet
+
+
+# doesn't expand when there is a word in front
+snippet /(^|(?<=\W))\./ "self." r
+self.
+endsnippet
+
+snippet from "from blah import blah" b
+from ${1:module} import ${2:Stuff}
+endsnippet
+
+##############
+# PROPERTIES #
+##############
+snippet roprop "Read Only Property" b
+@property
+def ${1:property}(self):
+	${2:return self._$1}$0
+endsnippet
+
+snippet rwprop "Read write property" b
+def ${1:property}():
+	${2/.+/(?0:""")/}${2:The RW property $1}${2/.+/(?0:"""\n		)/}def fget(self):
+		return self._$1$0
+	def fset(self, value):
+		self._$1 = value
+	return locals()
+$1 = property(**$1())
+endsnippet
+
+##########################
+# Try / Except / Finally #
+##########################
+snippet try "Try / Except" b
+try:
+	${1:pass}
+except ${2:Exception}, ${3:e}:
+	${4:raise $3}
+endsnippet
+
+snippet try "Try / Except / Else" b
+try:
+	${1:pass}
+except ${2:Exception}, ${3:e}:
+	${4:raise $3}
+else:
+	${5:pass}
+endsnippet
+
+snippet try "Try / Except / Finally" b
+try:
+	${1:pass}
+except ${2:Exception}, ${3:e}:
+	${4:raise $3}
+finally:
+	${5:pass}
+endsnippet
+
+snippet try "Try / Except / Else / Finally" b
+try:
+	${1:pass}
+except${2: ${3:Exception}, ${4:e}}:
+	${5:raise}
+else:
+	${6:pass}
+finally:
+	${7:pass}
+endsnippet
+
+##############
+# Assertions #
+##############
+snippet ae "Assert equal" b
+self.assertEqual(${1:first},${2:second})
+endsnippet
+
+snippet at "Assert True" b
+self.assertTrue(${0:exp})
+endsnippet
+
+snippet af "Assert False" b
+self.assertFalse(${1:expression})
+endsnippet
+
+snippet aae "Assert almost equal" b
+self.assertAlmostEqual(${1:first},${2:second})
+endsnippet
+
+snippet ar "Assert raises" b
+self.assertRaises(${1:exception}, ${2:func}${3/.+/, /}${3:arguments})
+endsnippet
+
+snippet #!
+	#!/usr/bin/python
+endsnippet
+
+snippet imp
+	import ${1:module}
+endsnippet
+# Module Docstring
+snippet docs
+	'''
+	File: ${1:`Filename('$1.py', 'foo.py')`}
+	Author: ${2:`g:snips_author`}
+	Description: ${3}
+	'''
+endsnippet
+snippet wh
+	while ${1:condition}:
+		${2:# code...}
+endsnippet
+snippet for
+for ${1:needle} in ${2:haystack}:
+	${3:# code...}
+endsnippet
+# New Class
+snippet cl
+class ${1:ClassName}(${2:object}):
+    """${3:docstring for $1}"""
+    def __init__(self, ${4:arg}):
+        ${5:super().__init__()}
+        self.$4 = $4
+        ${6}
+endsnippet
+# New Function
+snippet def
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		"""${3:docstring for $1}"""
+		${4:pass}
+endsnippet
+snippet deff
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		${3}
+endsnippet
+# New Method
+snippet defs
+	def ${1:mname}(self, ${2:arg}):
+		${3:pass}
+endsnippet
+# New Property
+snippet property
+	def ${1:foo}():
+		doc = "${2:The $1 property.}"
+		def fget(self):
+			${3:return self._$1}
+		def fset(self, value):
+			${4:self._$1 = value}
+endsnippet
+# Lambda
+snippet ld
+	${1:var} = lambda ${2:vars} : ${3:action}
+endsnippet
+snippet .
+	self.
+endsnippet
+snippet try "Try/Except"
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+endsnippet
+snippet try "Try/Except/Else"
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${5:pass}
+endsnippet
+snippet try "Try/Except/Finally"
+	try:
+		${1:pass}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	finally:
+		${5:pass}
+endsnippet
+snippet try "Try/Except/Else/Finally"
+try:
+    ${1:pass}
+except ${2:Exception}, ${3:e}:
+    ${4:raise $3}
+else:
+    ${5:pass}
+finally:
+    ${6:pass}
+endsnippet
+
+
+
+
+
+# __magic__
+snippet _
+	__${1:init}__${2}
+endsnippet
+
+snippet dump
+print(f"{${1:var}=}")
+endsnippet
+
+snippet pdump
+print("${1:var} = %s" % pprint.pformat($1,indent=4,width=80,sort_dicts=False) )
+endsnippet
+
+snippet xdump
+print(f"${1:var} = {int($1):#0x}" if $1 is not None else "$1 = None")
+endsnippet
+
+snippet dlog
+log("${1:var} = '{}'", $1 )
+endsnippet
+
+
+snippet idump
+self.indent("// ${1:var} = '%s'" % $1 )
+endsnippet
+
+snippet indent
+indent(level,"${1:var} = '%s'" % $1 )
+endsnippet
+
+
+snippet edump
+print("${1:var} = %s" % pprint.pformat(vars($1)) )
+endsnippet
+
+snippet log
+log(f"{$1=}")
+endsnippet
+
+snippet p
+print("$1"$2)$0
+endsnippet
+
+snippet vim
+# vim: tabstop=4 shiftwidth=4 expandtab ft=python
+endsnippet
+
+snippet bark
+vdb.util.bark() # print("BARK")
+endsnippet
+
+# vim:ft=snippets:

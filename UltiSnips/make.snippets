@@ -1,0 +1,32 @@
+snippet define
+define ${1}
+$(eval $(debug-enter)
+    $0
+$(debug-leave)
+)
+endef
+endsnippet
+
+snippet if
+$(if $0)
+endsnippet
+
+snippet eval
+$(eval $0)
+endsnippet
+
+snippet call
+$(call $0)
+endsnippet
+
+snippet filter
+$(filter $0)
+endsnippet
+
+snippet error
+$(error "$0")
+endsnippet
+
+snippet dump
+$(info ${1:var}=$($1))
+endsnippet

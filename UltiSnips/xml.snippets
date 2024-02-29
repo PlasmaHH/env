@@ -1,0 +1,66 @@
+snippet cdata
+<![CDATA[${1:`!v @"`}]]>${2}
+endsnippet
+
+#snippet "
+#<${1:name} ${2:attr}="${3:value}" ${4}>
+#    $0
+#</$1>
+#endsnippet
+
+global !p
+_rc = lambda t, c, l, text: (_rc(t,c-2,l,text) if (c!=l) else text) if len(t[c]) else ""
+endglobal
+
+snippet "
+<${1:name} ${2:attribute0}`!p 
+snip.rv = _rc(t, 2,2, "=\"")`${3:`!p 
+snip.rv = _rc(t, 2,2, "value0")`}`!p 
+snip.rv = _rc(t, 2,2, "\" ")`${4:`!p 
+snip.rv = _rc(t, 2,2, "attribute1")`}`!p 
+snip.rv = _rc(t, 4,2, "=\"")`${5:`!p 
+snip.rv = _rc(t, 4,2, "value1")`}`!p 
+snip.rv = _rc(t, 4,2, "\" ")`${6:`!p 
+snip.rv = _rc(t, 4,2, "attribute2")`}`!p 
+snip.rv = _rc(t, 6,2, "=\"")`${7:`!p 
+snip.rv = _rc(t, 6,2, "value2")`}`!p 
+snip.rv = _rc(t, 6,2, "\" ")`${8:`!p 
+snip.rv = _rc(t, 6,2, "attribute3")`}`!p 
+snip.rv = _rc(t, 8,2, "=\"")`${9:`!p 
+snip.rv = _rc(t, 8,2, "value3")`}`!p 
+snip.rv = _rc(t, 8,2, "\" ")`${10:`!p 
+snip.rv = _rc(t, 8,2, "attribute4")`}`!p 
+snip.rv = _rc(t, 10,2, "=\"")`${11:`!p 
+snip.rv = _rc(t, 10,2, "value4")`}`!p 
+snip.rv = _rc(t, 10,2, "\" ")`${12:`!p 
+snip.rv = _rc(t, 10,2, "attribute5")`}`!p 
+snip.rv = _rc(t, 12,2, "=\"")`${13:`!p 
+snip.rv = _rc(t, 12,2, "value5")`}`!p 
+snip.rv = _rc(t, 12,2, "\" ")` >$0
+</$1>
+endsnippet
+#`!p snip.rv = _rc(t, 3,2,"attribute=\"")`${3:B}`!p snip.rv = _rc(t, 3,2, "\"")`
+
+#<${1:name}>${2:`!v @"`}
+snippet <
+<${1:name}>
+    $0
+</$1>
+endsnippet
+
+snippet >
+<${1:name} />
+endsnippet
+
+snippet !-
+<!-- $0 -->
+endsnippet
+
+# some vwd specific tags
+snippet map
+<map from="$1" to="$2" />$0
+endsnippet
+
+snippet vim
+<!-- vim: set tabstop=4 shiftwidth=4 noexpandtab: -->
+endsnippet
