@@ -1,132 +1,176 @@
 [submodule "bundle/committia.vim"]
 	path = bundle/committia.vim
 	url = https://github.com/rhysd/committia.vim.git
+	branch = master
 [submodule "bundle/csv.vim"]
 	path = bundle/csv.vim
 	url = https://github.com/chrisbra/csv.vim
+	branch = master
 [submodule "bundle/fzf.vim"]
 	path = bundle/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
+	branch = master
 [submodule "bundle/gundo.vim"]
 	path = bundle/gundo.vim
 	url = https://github.com/sjl/gundo.vim.git/
+	branch = master
 [submodule "bundle/minibufexpl.vim"]
 	path = bundle/minibufexpl.vim
 	url = https://github.com/fholgado/minibufexpl.vim.git
+	branch = master
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = https://github.com/preservim/nerdcommenter.git
+	branch = master
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = https://github.com/preservim/nerdtree.git
+	branch = master
 [submodule "bundle/nerdtree-git-plugin"]
 	path = bundle/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+	branch = master
 [submodule "bundle/nerdtree-visual-selection"]
 	path = bundle/nerdtree-visual-selection
 	url = https://github.com/PhilRunninger/nerdtree-visual-selection.git
+	branch = master
 [submodule "bundle/rainbow"]
 	path = bundle/rainbow
 	url = https://github.com/luochen1990/rainbow.git
+	branch = master
 [submodule "bundle/shswitch"]
 	path = bundle/shswitch
 	url = https://github.com/kuznetsss/shswitch.git
+	branch = master
 [submodule "bundle/swapit"]
 	path = bundle/swapit
 	url = https://github.com/mjbrownie/swapit.git
+	branch = master
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+	branch = master
 [submodule "bundle/ultisnips"]
 	path = bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
+	branch = master
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+	branch = master
 [submodule "bundle/vim-airline-themes"]
 	path = bundle/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes
+	branch = master
 [submodule "bundle/vim-bookmarks"]
 	path = bundle/vim-bookmarks
 	url = https://github.com/MattesGroeger/vim-bookmarks.git
+	branch = master
 [submodule "bundle/vim-css-color"]
 	path = bundle/vim-css-color
 	url = https://github.com/ap/vim-css-color.git
+	branch = master
 [submodule "bundle/vim-easy-align"]
 	path = bundle/vim-easy-align
 	url = https://github.com/junegunn/vim-easy-align.git
+	branch = master
 [submodule "bundle/vim-easymotion"]
 	path = bundle/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+	branch = master
 [submodule "bundle/vimfiler.vim"]
 	path = bundle/vimfiler.vim
 	url = https://github.com/Shougo/vimfiler.vim.git
+	branch = master
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
+	branch = master
 [submodule "bundle/vim-indent-guides"]
 	path = bundle/vim-indent-guides
 	url = https://github.com/nathanaelkane/vim-indent-guides.git
+	branch = master
 [submodule "bundle/vim-ingo-library"]
 	path = bundle/vim-ingo-library
 	url = https://github.com/inkarkat/vim-ingo-library
+	branch = master
 [submodule "bundle/vim-lastplace"]
 	path = bundle/vim-lastplace
 	url = https://github.com/farmergreg/vim-lastplace.git
+	branch = master
 [submodule "bundle/vim-mark"]
 	path = bundle/vim-mark
 	url = https://github.com/inkarkat/vim-mark.git
+	branch = master
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
 	url = https://github.com/preservim/vim-markdown.git
+	branch = master
 [submodule "bundle/vim-markdown-toc"]
 	path = bundle/vim-markdown-toc
 	url = https://github.com/mzlogin/vim-markdown-toc.git
+	branch = master
 [submodule "bundle/vim-nerdtree-syntax-highlight"]
 	path = bundle/vim-nerdtree-syntax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
+	branch = master
 [submodule "bundle/vim-ripgrep"]
 	path = bundle/vim-ripgrep
 	url = https://github.com/jremmen/vim-ripgrep.git
+	branch = master
 [submodule "bundle/vim-speeddating"]
 	path = bundle/vim-speeddating
 	url = https://github.com/tpope/vim-speeddating.git
+	branch = master
 [submodule "bundle/vim-startify"]
 	path = bundle/vim-startify
 	url = https://github.com/mhinz/vim-startify.git
+	branch = master
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe
 	url = https://github.com/ycm-core/YouCompleteMe.git
+	branch = master
 [submodule "bundle/vim-devicons"]
 	path = bundle/vim-devicons
 	url = https://github.com/ryanoasis/vim-devicons.git
+	branch = master
 [submodule "bundle/vim-preview"]
 	path = bundle/vim-preview
 	url = https://github.com/greyblake/vim-preview.git
+	branch = master
 [submodule "bundle/vim-zoom"]
 	path = bundle/vim-zoom
 	url = https://github.com/dhruvasagar/vim-zoom.git
+	branch = master
 [submodule "pathogen"]
 	path = pathogen
 	url = https://github.com/tpope/vim-pathogen.git
+	branch = master
 [submodule "bundle/vim-latex"]
 	path = bundle/vim-latex
 	url = https://github.com/vim-latex/vim-latex.git
+	branch = master
 [submodule "bundle/ScrollColors"]
 	path = bundle/ScrollColors
 	url = https://github.com/vim-scripts/ScrollColors.git
+	branch = master
 [submodule "bundle/sparkup"]
 	path = bundle/sparkup
 	url = https://github.com/rstacruz/sparkup.git
+	branch = master
 [submodule "bundle/occur.vim"]
 	path = bundle/occur.vim
 	url = https://github.com/vim-scripts/occur.vim.git
+	branch = master
 [submodule "bundle/YankRing.vim"]
 	path = bundle/YankRing.vim
 	url = https://github.com/vim-scripts/YankRing.vim.git
+	branch = master
 [submodule "bundle/vim-matchit"]
 	path = bundle/vim-matchit
 	url = https://github.com/adelarsq/vim-matchit.git
+	branch = master
 [submodule "bundle/unite.vim"]
 	path = bundle/unite.vim
 	url = https://github.com/Shougo/unite.vim.git
+	branch = master
