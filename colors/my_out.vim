@@ -25,7 +25,7 @@ hi CursorLine term=underline cterm=underline guibg=Grey40
 hi DiffAdd term=bold ctermfg=231 ctermbg=22 guifg=#ffffff guibg=#5f875f
 "hi DiffChange term=bold ctermfg=231 ctermbg=17 guifg=#ffffff guibg=#00005f
 hi DiffChange term=bold ctermfg=231 ctermbg=17 guifg=#ffffff guibg=#3f3f87
-hi DiffDelete term=bold ctermfg=231 ctermbg=52 gui=bold guifg=#f75f5f     guibg=#f75f5f
+hi DiffDelete term=bold ctermfg=231 ctermbg=52 gui=bold guifg=#ffffff     guibg=#f75f5f
 hi DiffText term=reverse ctermfg=231 ctermbg=55 gui=bold guifg=#2f2f2f guibg=#66d9ef
 "hi DiffText term=reverse ctermfg=231 ctermbg=55 gui=bold guifg=#ffffff guibg=#5f00af
 hi Directory term=bold ctermfg=46 guifg=#00ff00
@@ -145,6 +145,7 @@ hi BookmarkLine ctermbg=194 ctermfg=NONE guibg=#440000
 
 hi link cppAccess Access
 hi link cppCast Cast
+"hi link diffRemoved diffDelete
 
 hi link mkdHeading htmlSpecialChar
 
