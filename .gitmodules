@@ -118,3 +118,12 @@
 [submodule "bundle/sparkup"]
 	path = bundle/sparkup
 	url = https://github.com/rstacruz/sparkup.git
+[submodule "bundle/occur.vim"]
+	path = bundle/occur.vim
+	url = https://github.com/vim-scripts/occur.vim.git
+[submodule "bundle/YankRing.vim"]
+	path = bundle/YankRing.vim
+	url = https://github.com/vim-scripts/YankRing.vim.git
+[submodule "bundle/vim-matchit"]
+	path = bundle/vim-matchit
+	url = https://github.com/adelarsq/vim-matchit.git
