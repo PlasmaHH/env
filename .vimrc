@@ -631,6 +631,7 @@ let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_complete_in_comments = 1
 let g:ycm_confirm_extra_conf = 1
 let g:ycm_server_python_interpreter = "/usr/bin/python3"
+let g:ycm_python_binary_path = "/usr/bin/python3"
 let g:ycm_ultisnips_completer = 1
 let g:ycm_use_ultisnips_completer = 1
 let g:ycm_max_num_candidates = 10
@@ -673,6 +674,7 @@ let MY_YCM_HIGHLIGHT_GROUP = {
 \			'regexp':	'ChooseMe',
 \			'operator':	'cppMember',
 \			'unknown':	'Normal',
+\			'annotation':   'PreProc'
       \ }
 
 
