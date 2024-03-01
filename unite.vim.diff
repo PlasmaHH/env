@@ -1,0 +1,15 @@
+diff --git a/bundle/unite.vim/autoload/unite/util.vim b/bundle/unite.vim/autoload/unite/util.vim
+index e920b690..76ec5343 100644
+--- a/bundle/unite.vim/autoload/unite/util.vim
++++ b/bundle/unite.vim/autoload/unite/util.vim
+@@ -286,8 +286,8 @@ function! unite#util#glob(pattern, ...) abort "{{{
+     let glob2 = escape(substitute(a:pattern,
+           \ '[^/]*$', '', '') . '.*', '?={}[]')
+ 
+-    return unite#util#uniq(split(unite#util#substitute_path_separator(glob(glob)), '\n')
+-          \ + split(unite#util#substitute_path_separator(glob(glob2)), '\n'))
++    return unite#util#uniq(split(unite#util#substitute_path_separator(glob(glob,1)), '\n')
++          \ + split(unite#util#substitute_path_separator(glob(glob2,1)), '\n'))
+   endif
+ endfunction"}}}
+ function! unite#util#command_with_restore_cursor(command) abort "{{{

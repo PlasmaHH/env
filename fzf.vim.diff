@@ -1,0 +1,23 @@
+diff --git a/bundle/fzf.vim/bin/preview.sh b/bundle/fzf.vim/bin/preview.sh
+index 87be30c..abcabd1 100755
+--- a/bundle/fzf.vim/bin/preview.sh
++++ b/bundle/fzf.vim/bin/preview.sh
+@@ -68,12 +68,12 @@ if [ -z "$FZF_PREVIEW_COMMAND" ] && [ "${BATNAME:+x}" ]; then
+   exit $?
+ fi
+ 
+-FILE_LENGTH=${#FILE}
+-MIME=$(file --dereference --mime -- "$FILE")
+-if [[ "${MIME:FILE_LENGTH}" =~ binary ]]; then
+-  echo "$MIME"
+-  exit 0
+-fi
++#FILE_LENGTH=${#FILE}
++#MIME=$(file --dereference --mime -- "$FILE")
++#if [[ "${MIME:FILE_LENGTH}" =~ binary ]]; then
++#  echo "$MIME"
++#  exit 0
++#fi
+ 
+ DEFAULT_COMMAND="highlight -O ansi -l {} || coderay {} || rougify {} || cat {}"
+ CMD=${FZF_PREVIEW_COMMAND:-$DEFAULT_COMMAND}

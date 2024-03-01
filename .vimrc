@@ -756,6 +756,7 @@ let g:netrw_altv = 1
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_time_format = "%Y.%m.%d %H:%M:%S"
 
+
 :nnoremap <MiddleMouse> <LeftMouse><MiddleMouse>
 if !has('nvim')
     set ttymouse=sgr
