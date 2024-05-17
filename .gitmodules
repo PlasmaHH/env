@@ -183,3 +183,6 @@
 [submodule "git/git-foresta"]
 	path = git/git-foresta
 	url = https://github.com/takaaki-kasai/git-foresta.git
+[submodule "git/vdb"]
+	path = git/vdb
+	url = https://github.com/PlasmaHH/vdb.git
