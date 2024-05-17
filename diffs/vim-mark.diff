@@ -1,7 +1,7 @@
-diff --git a/bundle/vim-mark/plugin/mark.vim b/bundle/vim-mark/plugin/mark.vim
+diff --git a/.vim/bundle/vim-mark/plugin/mark.vim b/.vim/bundle/vim-mark/plugin/mark.vim
 index df5d2c1..2eff6d1 100644
---- a/bundle/vim-mark/plugin/mark.vim
-+++ b/bundle/vim-mark/plugin/mark.vim
+--- a/.vim/bundle/vim-mark/plugin/mark.vim
++++ b/.vim/bundle/vim-mark/plugin/mark.vim
 @@ -263,10 +263,10 @@ if exists('g:mw_no_mappings')
  endif
  

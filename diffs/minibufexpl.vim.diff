@@ -1,7 +1,7 @@
-diff --git a/bundle/minibufexpl.vim/plugin/minibufexpl.vim b/bundle/minibufexpl.vim/plugin/minibufexpl.vim
+diff --git a/.vim/bundle/minibufexpl.vim/plugin/minibufexpl.vim b/.vim/bundle/minibufexpl.vim/plugin/minibufexpl.vim
 index e2b3348..3d2d695 100644
---- a/bundle/minibufexpl.vim/plugin/minibufexpl.vim
-+++ b/bundle/minibufexpl.vim/plugin/minibufexpl.vim
+--- a/.vim/bundle/minibufexpl.vim/plugin/minibufexpl.vim
++++ b/.vim/bundle/minibufexpl.vim/plugin/minibufexpl.vim
 @@ -658,9 +658,9 @@ function! <SID>StartExplorer(curBufNum)
  
    " If you press return, o or e in the -MiniBufExplorer- then try

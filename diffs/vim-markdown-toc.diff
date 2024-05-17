@@ -1,7 +1,7 @@
-diff --git a/bundle/vim-markdown-toc/ftplugin/markdown.vim b/bundle/vim-markdown-toc/ftplugin/markdown.vim
+diff --git a/.vim/bundle/vim-markdown-toc/ftplugin/markdown.vim b/.vim/bundle/vim-markdown-toc/ftplugin/markdown.vim
 index c8bcaaf..8b57d71 100644
---- a/bundle/vim-markdown-toc/ftplugin/markdown.vim
-+++ b/bundle/vim-markdown-toc/ftplugin/markdown.vim
+--- a/.vim/bundle/vim-markdown-toc/ftplugin/markdown.vim
++++ b/.vim/bundle/vim-markdown-toc/ftplugin/markdown.vim
 @@ -424,6 +424,7 @@ function! s:UpdateToc()
      endif
  

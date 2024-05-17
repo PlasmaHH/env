@@ -1,7 +1,7 @@
-diff --git a/bundle/unite.vim/autoload/unite/util.vim b/bundle/unite.vim/autoload/unite/util.vim
+diff --git a/.vim/bundle/unite.vim/autoload/unite/util.vim b/.vim/bundle/unite.vim/autoload/unite/util.vim
 index e920b690..76ec5343 100644
---- a/bundle/unite.vim/autoload/unite/util.vim
-+++ b/bundle/unite.vim/autoload/unite/util.vim
+--- a/.vim/bundle/unite.vim/autoload/unite/util.vim
++++ b/.vim/bundle/unite.vim/autoload/unite/util.vim
 @@ -286,8 +286,8 @@ function! unite#util#glob(pattern, ...) abort "{{{
      let glob2 = escape(substitute(a:pattern,
            \ '[^/]*$', '', '') . '.*', '?={}[]')

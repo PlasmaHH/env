@@ -1,7 +1,7 @@
-diff --git a/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim b/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
+diff --git a/.vim/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim b/.vim/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
 index 07fe913..f251cfd 100644
---- a/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
-+++ b/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
+--- a/.vim/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
++++ b/.vim/bundle/vimfiler.vim/autoload/vimfiler/mappings.vim
 @@ -244,7 +244,8 @@ function! vimfiler#mappings#define_default_mappings(context) abort "{{{
  
    " Execute or change directory.

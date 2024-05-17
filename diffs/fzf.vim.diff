@@ -1,7 +1,7 @@
-diff --git a/bundle/fzf.vim/bin/preview.sh b/bundle/fzf.vim/bin/preview.sh
+diff --git a/.vim/bundle/fzf.vim/bin/preview.sh b/.vim/bundle/fzf.vim/bin/preview.sh
 index 87be30c..abcabd1 100755
---- a/bundle/fzf.vim/bin/preview.sh
-+++ b/bundle/fzf.vim/bin/preview.sh
+--- a/.vim/bundle/fzf.vim/bin/preview.sh
++++ b/.vim/bundle/fzf.vim/bin/preview.sh
 @@ -68,12 +68,12 @@ if [ -z "$FZF_PREVIEW_COMMAND" ] && [ "${BATNAME:+x}" ]; then
    exit $?
  fi

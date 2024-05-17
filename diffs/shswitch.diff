@@ -1,7 +1,7 @@
-diff --git a/bundle/shswitch/plugin/shswitch.vim b/bundle/shswitch/plugin/shswitch.vim
+diff --git a/.vim/bundle/shswitch/plugin/shswitch.vim b/.vim/bundle/shswitch/plugin/shswitch.vim
 index 862a094..d268296 100644
---- a/bundle/shswitch/plugin/shswitch.vim
-+++ b/bundle/shswitch/plugin/shswitch.vim
+--- a/.vim/bundle/shswitch/plugin/shswitch.vim
++++ b/.vim/bundle/shswitch/plugin/shswitch.vim
 @@ -37,6 +37,7 @@ endfunction
  function! g:SHSwitch()
      let l:current_file_ext = expand('%:e')
