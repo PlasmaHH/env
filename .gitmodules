@@ -189,3 +189,9 @@
 [submodule "git/cmsis-svd"]
 	path = git/cmsis-svd
 	url = https://github.com/posborne/cmsis-svd.git
+[submodule "git/stm32-svd"]
+	path = git/stm32-svd
+	url = https://github.com/tinygo-org/stm32-svd.git
+[submodule "git/CMSIS_5"]
+	path = git/CMSIS_5
+	url = https://github.com/ARM-software/CMSIS_5.git
