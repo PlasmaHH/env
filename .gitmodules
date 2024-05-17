@@ -174,3 +174,12 @@
 	path = .vim/bundle/unite.vim
 	url = https://github.com/Shougo/unite.vim.git
 	branch = master
+[submodule "git/bash-git-prompt"]
+	path = git/bash-git-prompt
+	url = https://github.com/magicmonty/bash-git-prompt.git
+[submodule "git/fzf"]
+	path = git/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "git/git-foresta"]
+	path = git/git-foresta
+	url = https://github.com/takaaki-kasai/git-foresta.git

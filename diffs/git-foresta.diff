@@ -1,0 +1,18 @@
+--- a/git/git-foresta/git-foresta	2024-05-17 15:36:20.857356405 +0200
++++ b/git/git-foresta/git-foresta	2020-01-08 14:11:18.761592511 +0100
+@@ -84,13 +84,13 @@
+ my $Subvine_depth = 2;
+ my %Color         = (
+   "default"      => "\e[0m",
+   "tree"         => "\e[0;36m",
+   "hash"         => "\e[0;35m",
+-  "date"         => "\e[0;34m",
++  "date"         => "\e[0;32m",
+   "author"       => "\e[0;33m",
+-  "tag"          => "\e[1;35m",
++  "tag"          => "\e[1;33m",
+ 
+   "black"        => "\e[0;30m",
+   "red"          => "\e[0;31m",
+   "green"        => "\e[0;32m",
+   "yellow"       => "\e[0;33m",
