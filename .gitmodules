@@ -186,3 +186,6 @@
 [submodule "git/vdb"]
 	path = git/vdb
 	url = https://github.com/PlasmaHH/vdb.git
+[submodule "git/cmsis-svd"]
+	path = git/cmsis-svd
+	url = https://github.com/posborne/cmsis-svd.git
