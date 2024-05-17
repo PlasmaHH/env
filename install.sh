@@ -5,6 +5,9 @@ do
 	patch -p1 --dry-run < $i
 done
 
+# TODO
+# vim:
+# 	- build ycm
 
 for cmd in bat gdb vim git git ctags;
 do
