@@ -3,6 +3,7 @@
 for i in diffs/*.diff;
 do
 	patch -p1 --dry-run < $i
+#    patch -p1 < $i
 done
 
 # TODO
@@ -49,8 +50,18 @@ function insert( )
 }
 
 install .gdbinit ~/.gdbinit.env
+install .bashrc ~/.bashrc.env
 
 insert ~/.gdbinit "source ~/.gdbinit.env"
 
 
+cd .vim/bundle/YouCompleteMe/
+#./install.sh --all --clangd-completer
+
+cd ~/
+ln -sf "${ENVDIR}/.vimrc" .
+ln -sf "${ENVDIR}/.vim" .
+
+cd ~/bin/
+ln -sf ${ENVDIR}/bin/* .
 # vim: tabstop=4 shiftwidth=4 noexpandtab
