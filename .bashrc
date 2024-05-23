@@ -123,10 +123,10 @@ function stats_stop( )
 GIT_PROMPT_THEME=Single_line_NoExitState_openSUSE
 GIT_PROMPT_SHOW_UPSTREAM=
 LAST_POST_RESULT="           "
-. ~/git/bash-git-prompt/gitprompt.sh
+. {ENVDIR}/git/bash-git-prompt/gitprompt.sh
 export EDITOR=vim
-export LD_LIBRARY_PATH=${HOME}/opt/radare2/lib/
-export PATH=$PATH:${HOME}/opt/radare2/bin/
+
+
 #. ~/git/fuzzy_bash_completion/fuzzy_bash_completion
 #fuzzy_replace_filedir_xspec
 #fuzzy_setup_for_command cd
@@ -137,7 +137,22 @@ export PATH=$PATH:${HOME}/opt/radare2/bin/
 #fuzzy_setup_for_command vi &>/dev/null
 #fuzzy_setup_for_command git
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == *{ENVDIR}/git/fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}{ENVDIR}/git/fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+source "{ENVDIR}/git/fzf/shell/completion.bash"
+
+# Key bindings
+# ------------
+source "{ENVDIR}/git/fzf/shell/key-bindings.bash"
+
+
 export PREVIEWLINES=500
 
 # GIT heart FZF
@@ -214,13 +229,14 @@ case "$-" in
 	bind 'TAB':menu-complete
 esac
 
-#FZF_DEFAULT_OPTS="--inline-info --bind page-up:preview-up,page-down:preview-down --height=60% --preview '[[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file: \$(file -L {}) || ( highlight -s breeze -O xterm256 -l {} || cat {} ) 2> /dev/null | head -'$PREVIEWLINES"
-#FZF_DEFAULT_OPTS="--inline-info --bind page-up:preview-up,page-down:preview-down --height=60% --preview '[[ \$(file --mime {}) =~ image/ ]] && file -L {}; catimg -w 240 {} || ( [[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file: \$(file -L {}) || ( bat --style=numbers,changes,header-filesize -f --line-range :${PREVIEWLINES} {} || cat {} ) ) 2> /dev/null | head -'$PREVIEWLINES "
 FZF_DEFAULT_OPTS="--inline-info --bind page-up:preview-up,page-down:preview-down --height=60% --preview 'fzf_preview ${PREVIEWLINES} "{}"'"
-
-. ~/bin/xd-complete.sh
-
 
 export GCC_COLORS="error=01;31:warning=01;35:note=01;36:range1=32:range2=94:locus=01:quote=01:fixit-insert=32:fixit-delete=31:diff-filename=01:diff-hunk=32:diff-delete=31:diff-insert=32"
 
-vim
+
+cdr() {
+    root=$(git rev-parse --show-toplevel)
+    cd "${root}"
+}
+
+# vim: tabstop=4 shiftwidth=4 noexpandtab

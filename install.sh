@@ -1,10 +1,16 @@
 #!/bin/bash
 
+ENVDIR="$(pwd)"
+
 for i in diffs/*.diff;
 do
-	patch -p1 --dry-run < $i
-#    patch -p1 < $i
+	patch -f -p1 --dry-run < $i &> /dev/null
+	if [[ $? == 0 ]];
+	then
+		patch -p1 < $i
+	fi
 done
+
 
 # TODO
 # vim:
@@ -19,9 +25,10 @@ do
 	fi
 done
 
-
-ENVDIR="$(pwd)"
-
+# Build a few different things
+cd "${ENVDIR}/git/fzf"
+make bin/fzf
+cd "${ENVDIR}"
 
 function install()
 {
@@ -49,10 +56,13 @@ function insert( )
 	fi
 }
 
+cd "${ENVDIR}"
+
 install .gdbinit ~/.gdbinit.env
 install .bashrc ~/.bashrc.env
 
 insert ~/.gdbinit "source ~/.gdbinit.env"
+insert ~/.bashrc "source ~/.bashrc.env"
 
 
 cd .vim/bundle/YouCompleteMe/

@@ -1,0 +1,45 @@
+#!/bin/bash
+PREVIEWLINES=$1
+FILE=$2
+MIME=$(file -L -b --mime "${FILE}")
+#FZF_DEFAULT_OPTS="--inline-info --bind page-up:preview-up,page-down:preview-down --height=60% --preview '[[ \$(file --mime {}) =~ image/ ]] && file -L {}; catimg -w 240 {} || ( [[ \$(file --mime {}) =~ binary ]] && echo {} is a binary file: \$(file -L {}) || ( bat --style=numbers,changes,header-filesize -f --line-range :${PREVIEWLINES} {} || cat {} ) ) 2> /dev/null | head -'$PREVIEWLINES "
+case $MIME in
+	*"cannot open"*)
+		echo "${MIME}"
+		;;
+	*/x-rpm*)
+		rpm -qip --changelog "${FILE}"
+		;;
+	*/zip*)
+		unzip -v "${FILE}"
+		;;
+	*/x-dosexec*|*/x-executable*)
+		binwalk "${FILE}"
+		binwalk -EN "${FILE}"
+		;;
+	*font/*)
+		FG_COLOR="#ffffff"
+		BG_COLOR="#000000"
+		PREVIEW_TEXT="ABCDEFGHIJKLM\nNOPQRSTUVWXYZ\nabcdefghijklm\nnopqrstuvwxyz\n1234567890\n!@$\%(){}[]"
+		SIZE=532x365
+		FONT_SIZE=38
+		otfinfo --info "${FILE}"
+		convert -size $SIZE xc:"$BG_COLOR"  -gravity center  -pointsize $FONT_SIZE  -font "${FILE}"  -fill "$FG_COLOR"  -annotate +0+0 "$PREVIEW_TEXT"  -flatten PNG:- | catimg -w 240 -
+		;;
+	*image/*)
+		file -L "${FILE}"
+		catimg -w 240 "${FILE}"
+		;;
+	*inode/directory*)
+		echo "${FILE} is a directory"
+		ls -lah ${FILE}
+		;;
+	*charset=binary*)
+		echo "${FILE} is a binary (${MIME})"
+		;;
+	*)
+		bat --style=numbers,changes,header-filesize -f --line-range :${PREVIEWLINES} "${FILE}"
+		echo "${FILE} is ${MIME}"
+		;;
+esac
+# vim: tabstop=4 shiftwidth=4 noexpandtab
