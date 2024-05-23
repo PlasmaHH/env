@@ -9,6 +9,7 @@ do
 	then
 		patch -p1 < $i
 	fi
+#    patch -R -p1 < $i
 done
 
 

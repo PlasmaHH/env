@@ -1,0 +1,82 @@
+--- a/git/bash-git-prompt/themes/Single_line_NoExitState_openSUSE.bgptheme
++++ b/git/bash-git-prompt/themes/Single_line_NoExitState_openSUSE.bgptheme
+@@ -1,16 +1,72 @@
+ # This is a theme for gitprompt.sh,
+ # it uses the default openSUSE bash prompt style
+ 
++headcolor=""
++repocolor="\[$(tput setaf 112)\]"
++tailcolor="\[$(tput setaf 229)\]"
++venvcolor="\[$(tput setaf 189)\]"
++mastercolor="\[$(tput setaf 226)\]"
++
++function prompt_callback {
++
++    # Get the real path to the repo's root                                          
++    local repo_realpath=$(git rev-parse --show-toplevel 2> /dev/null)               
++
++    if [[ $repo_realpath == "/mnt/c/"* ]];
++    then
++	echo -n "\\w"
++	return
++    fi
++    # Are we even in a repo?                                                        
++    if [[ -n "$repo_realpath" ]]; then                                              
++
++      # OK, get the real path to the current dir                                    
++      local cur_realpath=$(realpath .)                                              
++
++      # Get the name of the repo                                                    
++      local repo_name=$(basename $repo_realpath)                                    
++
++      # Calculate the paths before and after the repo name                          
++      local diff=$((${#cur_realpath} - ${#repo_realpath}))                          
++      XWD="$cur_realpath"
++      local head=${XWD:0:$((${#XWD} - $diff - ${#repo_name}))}
++      if [ $diff -gt 0 ]; then
++        local tail=${PWD:$((-$diff))}                                                 
++      fi
++
++      xrepo=${PWD/#${head}/}
++
++      xrepo=${xrepo/%${tail}/}
++      repo_name="$xrepo"
++
++      head=${head/#${HOME}/\~}
++
++      # Print the full path                                                         
++      echo -en "${headcolor}$head${repocolor}$repo_name${tailcolor}$tail${ResetColor}"
++    else                                                                            
++      echo -n "\\w"
++    fi                                                                              
++}
++
++
+ override_git_prompt_colors() {
++
+   GIT_PROMPT_THEME_NAME="Single_line_NoExitState_openSUSE"
+   GIT_PROMPT_BRANCH="${Cyan}"
+-  GIT_PROMPT_MASTER_BRANCH="${GIT_PROMPT_BRANCH}"
++  GIT_PROMPT_MASTER_BRANCH="${mastercolor}"
+   GIT_PROMPT_UNTRACKED=" ${Cyan}…${ResetColor}"
+   GIT_PROMPT_CHANGED="${Yellow}✚ "
+   GIT_PROMPT_STAGED="${Magenta}●"
++  GIT_PROMPT_VIRTUALENV="${venvcolor}_VIRTUALENV_${ResetColor} "
+ 
+-  GIT_PROMPT_START_USER="\u@\h:\w"
++  GIT_PROMPT_START_USER="\u@\h:"
+   GIT_PROMPT_START_ROOT="${BoldRed}\h:\w"
++  GIT_PROMPT_MASTER_BRANCHES="master"
++  shopt -s extglob
++  GIT_PROMPT_MASTER_BRANCHES='@(master|main|develop)'
++
++  local Save='\e[s' # Save cursor position
++  local Reset='\e[u' # Restore cursor to save point
+ 
+   GIT_PROMPT_END_USER="> "
+   GIT_PROMPT_END_ROOT=" # ${ResetColor}"
+@@ -18,3 +74,4 @@ override_git_prompt_colors() {
+ 
+ reload_git_prompt_colors "Single_line_NoExitState_openSUSE"
+ 
++# vim: ft=sh 
