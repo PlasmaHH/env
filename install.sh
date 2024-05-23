@@ -13,10 +13,6 @@ do
 done
 
 
-# TODO
-# vim:
-# 	- build ycm
-
 for cmd in bat gdb vim git git ctags;
 do
 	x=$(which $cmd 2>/dev/null)
@@ -29,6 +25,8 @@ done
 # Build a few different things
 cd "${ENVDIR}/git/fzf"
 make bin/fzf
+cd "${ENVDIR}/.vim/bundle/YouCompleteMe/"
+#./install.py --all --clangd-completer
 cd "${ENVDIR}"
 
 function install()
@@ -61,11 +59,14 @@ cd "${ENVDIR}"
 
 install .gdbinit ~/.gdbinit.env
 install .bashrc ~/.bashrc.env
+install .tmux.conf ~/.tmux.env.conf
+install .tmux.vim.conf ~/.tmux.vim.conf
 
 insert ~/.gdbinit "source ~/.gdbinit.env"
 insert ~/.bashrc "source ~/.bashrc.env"
+insert ~/.tmux.conf "source ~/.tmux.env.conf"
 
-
+git config --global --add include.path ${ENVDIR}/.gitconfig
 cd .vim/bundle/YouCompleteMe/
 #./install.sh --all --clangd-completer
 
