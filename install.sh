@@ -26,7 +26,7 @@ done
 cd "${ENVDIR}/git/fzf"
 make bin/fzf
 cd "${ENVDIR}/.vim/bundle/YouCompleteMe/"
-#./install.py --all --clangd-completer
+./install.py --all --clangd-completer
 cd "${ENVDIR}"
 
 function install()
