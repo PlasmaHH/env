@@ -39,6 +39,7 @@
     lolf = log --pretty='%C(auto)%h %cd %an%d %C(auto,bold)%s%C(auto)' --graph --date='format-local:%Y-%m-%d %H:%M:%S'
     lol = !git-foresta --style=10 $1
     lola = !git lol --all $1
+    root = rev-parse --show-toplevel
 
 [rerere]
 	enabled = 1
@@ -57,9 +58,13 @@
 [column]
 	ui = auto
 
+[push]
+    recurseSubmodules = check
+
 [fetch]
 	writeCommitGraph = true
 	parallel = 0
+	prune = true
 [submodule]
 	recurse = true
 	fetchjobs = 0
