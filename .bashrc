@@ -239,4 +239,35 @@ cdr() {
     cd "${root}"
 }
 
+function venv()
+{
+    TENV=$1
+
+    if [[ -z "${TENV}" ]];
+    then
+	# just list
+	echo "Installed virtual environments:"
+	for e in ~/.venv/*;
+	do
+	    if [[ -d "${e}" ]];
+	    then
+		VNAME=$(basename ${e})
+		VER=$(${e}/bin/python3 --version)
+		echo -e "${VNAME}\t${VER}"
+	    fi
+	done
+    else
+	ACTIVATE=~/".venv/${TENV}/bin/activate"
+	if [[ ! -f "${ACTIVATE}" ]];
+	then
+	    echo "Unknown venv ${TENV}"
+	else
+	    source "${ACTIVATE}"
+	    echo "Activated environment ${TENV}"
+	fi
+    fi
+}
+
+
+
 # vim: tabstop=4 shiftwidth=4 noexpandtab
