@@ -10,6 +10,7 @@
 
 [core]
     pager =
+    excludesfile = /home/lbt/.gitignore
 
 [blame]
     coloring = highlightRecent
@@ -20,7 +21,7 @@
 
 
 [alias]
-    st = status
+    st = status --no-column
     co = checkout
     ci = commit -a
     comm = commit
@@ -51,16 +52,16 @@
 
 [pull]
 	ff = only
-
+	rebase = false
 [merge "ours"]
     driver = true
 
 [column]
 	ui = auto
-
+[gui]
+	pruneduringfetch = true
 [push]
-    recurseSubmodules = check
-
+	recurseSubmodules = check
 [fetch]
 	writeCommitGraph = true
 	parallel = 0
