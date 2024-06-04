@@ -55,6 +55,16 @@ function insert( )
 	fi
 }
 
+function append( )
+{
+	FILE="$1"
+	shift
+	ENTRY="$@"
+	cp "${FILE}" "${FILE}.tmp"
+	echo "${ENTRY}" >> "${FILE}.tmp"
+	sort -u "${FILE}.tmp" > "${FILE}"
+}
+
 cd "${ENVDIR}"
 
 install .gdbinit ~/.gdbinit.env
@@ -67,8 +77,7 @@ insert ~/.bashrc "source ~/.bashrc.env"
 insert ~/.tmux.conf "source ~/.tmux.env.conf"
 
 git config --global --add include.path ${ENVDIR}/.gitconfig
-cd .vim/bundle/YouCompleteMe/
-#./install.sh --all --clangd-completer
+append ~/.gitignore ".*.swp"
 
 cd ~/
 ln -sf "${ENVDIR}/.vimrc" .
