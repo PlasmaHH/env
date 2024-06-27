@@ -260,7 +260,9 @@ function venv()
 	ACTIVATE=~/".venv/${TENV}/bin/activate"
 	if [[ ! -f "${ACTIVATE}" ]];
 	then
-	    echo "Unknown venv ${TENV}"
+	    echo "Unknown venv ${TENV}, creating with current python3"
+		python3 -m venv ~/".venv/${TENV}"
+	    source "${ACTIVATE}"
 	else
 	    source "${ACTIVATE}"
 	    echo "Activated environment ${TENV}"
