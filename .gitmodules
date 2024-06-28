@@ -195,3 +195,6 @@
 [submodule "git/CMSIS_5"]
 	path = git/CMSIS_5
 	url = https://github.com/ARM-software/CMSIS_5.git
+[submodule ".vim/bundle/vim-table-mode"]
+	path = .vim/bundle/vim-table-mode
+	url = https://github.com/dhruvasagar/vim-table-mode.git
