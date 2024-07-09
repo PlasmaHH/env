@@ -1,4 +1,4 @@
-snippet rat
+snippet grat
 
 <details>
 <summary>
@@ -14,7 +14,7 @@ $0
 endsnippet
 
 
-snippet exc
+snippet gexc
 
 <details>
 <summary>
@@ -29,7 +29,7 @@ snippet exc
 $0
 endsnippet
 
-snippet doc
+snippet gdoc
 
 <details>
 <summary>
@@ -61,12 +61,46 @@ tags:
 ---
 endsnippet
 
+
 snippet adex
 === "${1}"
 
     ???+ $1 "$1"
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa, nec semper lorem quam in massa.
 
+
+$0
+endsnippet
+
+
+snippet wikiu
+[${0:$1}]({{wikiu("${1}")}})
+endsnippet
+
+snippet wiki
+{{wiki("${1}")}}
+endsnippet
+
+
+snippet rat
+??? question "Rationale"
+    ${VISUAL} $1
+
+$0
+endsnippet
+
+
+snippet exc
+
+??? tip "Exception"
+    ${VISUAL} $1
+
+$0
+endsnippet
+
+snippet doc
+??? toc "External Documentation"
+    ${VISUAL} $1
 
 $0
 endsnippet

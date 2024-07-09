@@ -1127,6 +1127,11 @@ nmap <C-W>o <Plug>(zoom-toggle)
 
 let g:markdown_minlines=200
 
+
+
+"autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* set dir=/tmp//
+"autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* noswapfile
+
 "let g:ale_set_quickfix = 0
 "let g:ale_set_loclist = 0
 "let g:ale_open_list = 1
