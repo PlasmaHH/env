@@ -5,6 +5,7 @@ export PATH=${HOME}/local/bin/:${HOME}/opt/bin:${HOME}/bin:/usr/local/bin:/usr/l
 shopt -s cdspell
 shopt -s dirspell
 shopt -s checkhash
+shopt -s globstar
 
 
 HISTCONTROL=ignoreboth
