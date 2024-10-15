@@ -956,6 +956,7 @@ hi link StartifySection Structure
 hi link StartifySelect  Define
 hi link StartifyVar     Repeat
 
+
 let g:startify_session_autoload = 1
 let g:startify_session_sort = 1
 let g:startify_session_persistence = 1
@@ -1126,8 +1127,12 @@ let g:nerdtree_vis_confirm_open = 0
 nmap <C-W>o <Plug>(zoom-toggle)
 
 let g:markdown_minlines=200
+let g:rainbow_active = 0
 
-
+au BufNewFile,BufNew,BufRead *.cpp,*.h,*.hpp,*.c,*.cxx RainbowToggle
+au BufNewFile,BufNew,BufRead *.py RainbowToggle
+au BufNewFile,BufNew,BufRead *.json RainbowToggle
+au BufNewFile,BufNew,BufRead *.html,*.xml,*.xhtml RainbowToggle
 
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* set dir=/tmp//
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* noswapfile
