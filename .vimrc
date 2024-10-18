@@ -1134,6 +1134,7 @@ au BufNewFile,BufNew,BufRead *.py RainbowToggle
 au BufNewFile,BufNew,BufRead *.json RainbowToggle
 au BufNewFile,BufNew,BufRead *.html,*.xml,*.xhtml RainbowToggle
 
+au BufNewFile,BufNew,BufRead /home/lbt/*.cpp,/home/lbt/*.h,/home/lbt/*.hpp,/home/lbt/*.c,/home/lbt/*.cxx set ts=4
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* set dir=/tmp//
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* noswapfile
 
