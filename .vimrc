@@ -610,7 +610,7 @@ au BufNewFile,BufNew,BufRead *.otl colorscheme vo_dark
 au BufNewFile,BufNew,BufRead *.html let g:ycm_auto_trigger=0
 au BufNewFile,BufNew,BufRead *.html imap <C-SPACE> <c-x><c-u>
 au BufNewFile,BufNew,BufRead *.html imap <Nul> <c-x><c-u>
-au BufNewFile,BufNew,BufRead *.md set conceallevel=2
+"au BufNewFile,BufNew,BufRead *.md set conceallevel=2
 au BufNewFile,BufNew,BufRead *.json set conceallevel=0
 
 

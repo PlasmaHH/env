@@ -18,6 +18,10 @@ snippet map "std::map (map)"
 std::map<${1:key}, ${2:value}> ${3:map};
 endsnippet
 
+snippet vd "virtual dtor" i
+virtual ~${VISUAL}${1:`!p snip.rv = snip.v.text.strip()`}() = default;
+endsnippet
+
 snippet vec "std::vector (v)"
 std::vector<${1:T}> ${2:vec};
 endsnippet

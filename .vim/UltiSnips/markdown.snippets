@@ -84,7 +84,7 @@ endsnippet
 
 snippet rat
 ??? question "Rationale"
-    ${VISUAL} $1
+    ${VISUAL}$1
 
 $0
 endsnippet
@@ -92,15 +92,15 @@ endsnippet
 
 snippet exc
 
-??? tip "Exception"
-    ${VISUAL} $1
+???+ tip "Exception"
+    ${VISUAL}$1
 
 $0
 endsnippet
 
 snippet doc
 ??? toc "External Documentation"
-    ${VISUAL} $1
+    ${VISUAL}$1
 
 $0
 endsnippet
@@ -112,5 +112,9 @@ snippet mis
     * ${VISUAL} $1
 
 $0
+endsnippet
+
+snippet raw
+{%raw%}${VISUAL}$1{%endraw%}
 endsnippet
 
