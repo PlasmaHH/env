@@ -1,0 +1,13 @@
+diff --git a/.vim/bundle/rainbow/autoload/rainbow_main.vim b/.vim/bundle/rainbow/autoload/rainbow_main.vim
+index fe22ea1..c10b454 100644
+--- a/.vim/bundle/rainbow/autoload/rainbow_main.vim
++++ b/.vim/bundle/rainbow/autoload/rainbow_main.vim
+@@ -33,7 +33,7 @@ let s:rainbow_conf = {
+ \		},
+ \		'xml': {
+ \			'syn_name_prefix': 'xmlRainbow',
+-\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
++\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\s*\>/ end=#</\z1># fold'],
+ \		},
+ \		'xhtml': {
+ \			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
