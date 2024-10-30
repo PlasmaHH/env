@@ -22,8 +22,8 @@ thispath = os.getcwd()
 ccommands = thispath + "/compile_commands.json"
 
 # TODO add automatic reloading after something in VS changed
-
-while( len(thispath) > 0 ):
+oldpath = ""
+while( oldpath != thispath ):
     try:
 #        log(f"{thispath=}")
         with open(thispath + "/Build/active_build_dir.txt") as f:
@@ -34,16 +34,15 @@ while( len(thispath) > 0 ):
         ccommands = active_builddir + "/compile_commands.json"
         break
     except FileNotFoundError:
+        oldpath = thispath
         thispath = os.path.dirname(thispath)
 
 #log(f"{ccommands=}")
 if( not os.path.isfile(ccommands) ):
     cdb=[]
 else:
-    cfile = open(ccommands)
-    cdb = json.load(cfile)
-    cfile.close()
-
+    with open(ccommands) as cfile:
+        cdb = json.load(cfile)
 
 class compile_command:
 
