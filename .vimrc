@@ -635,7 +635,7 @@ let g:ycm_server_python_interpreter = "/usr/bin/python3"
 let g:ycm_python_binary_path = "/usr/bin/python3"
 let g:ycm_ultisnips_completer = 1
 let g:ycm_use_ultisnips_completer = 1
-let g:ycm_max_num_candidates = 10
+let g:ycm_max_num_candidates = 42
 let g:ycm_max_num_identifier_candidates = 10
 
 let g:ycm_enable_inlay_hints = 1
@@ -645,6 +645,10 @@ let g:ycm_enable_semantic_highlighting=1
 let g:ycm_extra_conf_globlist = [ '/home/lbt/git/nextgen*/*', '/home/lbt/git/alt.tools/*' ]
 
 
+nnoremap <S-F10> :YcmCompleter GoToReferences<CR>
+nnoremap <C-F10> :YcmCompleter RecatorRename<SPACE>
+nnoremap <S-F11> :YcmCompleter GoToInclude<CR>
+nnoremap <C-F11> :YcmCompleter GoToAlternateFile<CR>
 nnoremap <S-F12> :YcmCompleter GoToDefinition<CR>
 nnoremap <C-F12> :YcmCompleter GoToDeclaration<CR>
 
@@ -652,6 +656,12 @@ nnoremap <silent> <leader>h <Plug>(YCMToggleInlayHints)
 
 nmap <Leader>F :YcmCompleter FixIt<CR>
 nmap <silent> <leader>f <Plug>(YCMFindSymbolInWorkspace)
+nmap <silent> <leader>fw <Plug>(YCMFindSymbolInWorkspace)
+nmap <silent> <leader>fd <Plug>(YCMFindSymbolInDocument)
+
+nmap <silent> <leader>yh <Plug>(YCMTypeHierarchy)
+nmap <silent> <leader>yc <Plug>(YCMCallHierarchy)
+nmap <silent> <leader>yr :YcmCompleter RefactorRename
 
 let MY_YCM_HIGHLIGHT_GROUP = {
 \			'namespace': 'cppSTD',
