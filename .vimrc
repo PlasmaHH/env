@@ -366,7 +366,7 @@ nnoremap <silent> <F6> :NERDTreeToggle<CR>
 "nnoremap <silent> <F7> :TlistToggle<CR>
 "nnoremap <silent> <F7> :TagbarToggle<CR>
 nnoremap <silent> <S-F7> :TagbarOpen f<CR>
-map <C-F12> :!ctags -R --links=no --c++-kinds=+p --fields=+iaS --extra=+q --languages=c++ --exclude=externals/boost .<CR>
+"map <C-F12> :!ctags -R --links=no --c++-kinds=+p --fields=+iaS --extra=+q --languages=c++ --exclude=externals/boost .<CR>
 au FileType qf set nospell
 au FileType dot set nospell
 au FileType cpp set spell
@@ -405,7 +405,8 @@ let g:DoxygenToolkit_returnTag="@returns "
 let g:DoxygenToolkit_compactDoc="yes"
 
 au QuickFixCmdPost make call OpenFullQuicklist()
-command Make :make -j 16 CC=distcc CXX="distcc g++"<CR>
+"command Make :make -j 16 CC=distcc CXX="distcc g++"<CR>
+"command Make :make<CR>
 
 
 "map <silent> <F10> :call ToggleBufferExplorer()<CR>
@@ -642,6 +643,10 @@ let g:ycm_echo_current_diagnostic = 1
 let g:ycm_enable_semantic_highlighting=1
 
 let g:ycm_extra_conf_globlist = [ '/home/lbt/git/nextgen*/*', '/home/lbt/git/alt.tools/*' ]
+
+
+nnoremap <S-F12> :YcmCompleter GoToDefinition<CR>
+nnoremap <C-F12> :YcmCompleter GoToDeclaration<CR>
 
 nnoremap <silent> <leader>h <Plug>(YCMToggleInlayHints)
 
