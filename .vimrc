@@ -1099,6 +1099,7 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
 endfunction
 
+au VimEnter * call doge#install()
 let g:doge_doxygen_settings = {
     \    'char' : '\'
     \}
