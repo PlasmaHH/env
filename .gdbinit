@@ -32,8 +32,8 @@ vdb start
 
 set vdb-memory-ignore-empty-sections on
 set vdb-svd-directories {ENVDIR}/svd/
-#set vdb-svd-scan-filter STM32
-#set vdb-svd-auto-scan off
+set vdb-svd-auto-scan off
+set vdb-svd-scan-background off
 
 
 
