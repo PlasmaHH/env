@@ -1,0 +1,4 @@
+alias l='ls -alF'
+alias la='ls -la'
+alias ll='ls -l'
+alias lgit='lazygit'
