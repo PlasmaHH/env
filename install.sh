@@ -69,6 +69,7 @@ cd "${ENVDIR}"
 
 install .gdbinit ~/.gdbinit.env
 install .bashrc ~/.bashrc.env
+install .alias ~/.alias.env
 install .tmux.conf ~/.tmux.env.conf
 install .tmux.vim.conf ~/.tmux.vim.conf
 

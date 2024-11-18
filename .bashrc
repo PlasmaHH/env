@@ -1,5 +1,6 @@
 
 test -s ~/.alias && . ~/.alias || true
+test -s ~/.alias.env && . ~/.alias.env || true
 export PATH=${HOME}/local/bin/:${HOME}/opt/bin:${HOME}/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin/:/usr/bin:/usr/sbin/:/usr/lib/mit/sbin:/opt/cross/bin:${PATH}
 
 shopt -s cdspell
