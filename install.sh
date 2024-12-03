@@ -86,4 +86,19 @@ ln -sf "${ENVDIR}/.vim" .
 
 cd ~/bin/
 ln -sf ${ENVDIR}/bin/* .
+
+# TODO
+# ~/.vim cannot be overwritten when directory
+# ~/.gitignore gives an error when not there already
+# Before doing enything check prerequisites:
+# - go (min 1.23?)
+# - python devel (min 3.11?)
+# - make
+# - cmake
+# Check for the mistake of having submodules not cloned recursively and do it automagically
+#
+# Unknown errors yet: 
+# - fatal: ref HEAD is not a symbolic ref (from make bin/fzf)
+# Features:
+# - collect result of everything and output in a table which went fine and which failed?
 # vim: tabstop=4 shiftwidth=4 noexpandtab
