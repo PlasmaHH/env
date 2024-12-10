@@ -1162,7 +1162,8 @@ let g:ollama_fim_prefix = '<|fim_prefix|>'
 let g:ollama_fim_middle = '<|fim_middle|>'
 let g:ollama_fim_suffix = '<|fim_suffix|>'
 
-
+packadd helptoc
+packadd matchit
 "let g:ale_set_quickfix = 0
 "let g:ale_set_loclist = 0
 "let g:ale_open_list = 1

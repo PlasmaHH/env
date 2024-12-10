@@ -84,6 +84,15 @@ cd ~/
 ln -sf "${ENVDIR}/.vimrc" .
 ln -sf "${ENVDIR}/.vim" .
 
+pushd .
+cd "${ENVDIR}/.vim/bundle" .
+for d in "*/doc";
+do
+	echo "Generating vim helptags for $d"
+	/usr/bin/vim "+helptags $d | q "
+done
+popd
+
 cd ~/bin/
 ln -sf ${ENVDIR}/bin/* .
 
