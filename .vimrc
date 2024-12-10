@@ -1154,6 +1154,15 @@ au BufNewFile,BufNew,BufRead /home/lbt/*.cpp,/home/lbt/*.h,/home/lbt/*.hpp,/home
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* set dir=/tmp//
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* noswapfile
 
+let g:ollama_host = 'http://localhost:11434'
+
+let g:ollama_chat_model = 'qwen2.5-coder:7b-instruct-q6_K'
+let g:ollama_model = 'qwen2.5-coder:7b-instruct-q6_K'
+let g:ollama_fim_prefix = '<|fim_prefix|>'
+let g:ollama_fim_middle = '<|fim_middle|>'
+let g:ollama_fim_suffix = '<|fim_suffix|>'
+
+
 "let g:ale_set_quickfix = 0
 "let g:ale_set_loclist = 0
 "let g:ale_open_list = 1

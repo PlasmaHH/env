@@ -201,3 +201,6 @@
 [submodule ".vim/bundle/vim-doge"]
 	path = .vim/bundle/vim-doge
 	url = https://github.com/kkoomen/vim-doge.git
+[submodule ".vim/bundle/vim-ollama"]
+	path = .vim/bundle/vim-ollama
+	url = https://github.com/gergap/vim-ollama.git
