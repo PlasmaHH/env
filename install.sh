@@ -89,7 +89,7 @@ cd "${ENVDIR}/.vim/bundle" .
 for d in "*/doc";
 do
 	echo "Generating vim helptags for $d"
-	/usr/bin/vim "+helptags $d | q "
+	/usr/bin/vim -X -u NORC "+helptags $d | q "
 done
 popd
 
