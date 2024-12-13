@@ -177,30 +177,40 @@
 [submodule "git/bash-git-prompt"]
 	path = git/bash-git-prompt
 	url = https://github.com/magicmonty/bash-git-prompt.git
+	branch = master
 [submodule "git/fzf"]
 	path = git/fzf
 	url = https://github.com/junegunn/fzf.git
+	branch = master
 [submodule "git/git-foresta"]
 	path = git/git-foresta
 	url = https://github.com/takaaki-kasai/git-foresta.git
+	branch = master
 [submodule "git/vdb"]
 	path = git/vdb
 	url = https://github.com/PlasmaHH/vdb.git
+	branch = master
 [submodule "git/cmsis-svd"]
 	path = git/cmsis-svd
 	url = https://github.com/posborne/cmsis-svd.git
+	branch = master
 [submodule "git/stm32-svd"]
 	path = git/stm32-svd
 	url = https://github.com/tinygo-org/stm32-svd.git
+	branch = master
 [submodule "git/CMSIS_5"]
 	path = git/CMSIS_5
 	url = https://github.com/ARM-software/CMSIS_5.git
+	branch = master
 [submodule ".vim/bundle/vim-table-mode"]
 	path = .vim/bundle/vim-table-mode
 	url = https://github.com/dhruvasagar/vim-table-mode.git
+	branch = master
 [submodule ".vim/bundle/vim-doge"]
 	path = .vim/bundle/vim-doge
 	url = https://github.com/kkoomen/vim-doge.git
+	branch = master
 [submodule ".vim/bundle/vim-ollama"]
 	path = .vim/bundle/vim-ollama
 	url = https://github.com/gergap/vim-ollama.git
+	branch = master
