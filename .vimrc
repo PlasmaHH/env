@@ -220,7 +220,7 @@ au BufEnter *.cxx,*.cpp,*.cc,*.c,*.hpp,*.hh,*.h,*.pl,*.py set list
 au Syntax cpp set spelllang=en_gb
 au Syntax cpp call AddCppSyntax()
 au Syntax cpp set list
-au Syntax python call AddPythonSyntax()
+"au Syntax python call AddPythonSyntax()
 au Syntax dosini syn match dosiniComment "^[#;].*$"
 au Syntax dosini syn region dosiniSpecialKey start="^%" end="%"
 au Syntax json syn match CfgComment "#.*"
