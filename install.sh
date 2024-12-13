@@ -79,6 +79,7 @@ insert ~/.tmux.conf "source ~/.tmux.env.conf"
 
 git config --global --add include.path ${ENVDIR}/.gitconfig
 append ~/.gitignore ".*.swp"
+append ~/.gitignore "doc/tags"
 
 cd ~/
 ln -sf "${ENVDIR}/.vimrc" .
