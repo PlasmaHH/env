@@ -217,6 +217,8 @@ au BufEnter * call PreviewSpell()
 au BufEnter *.cxx,*.cpp,*.cc,*.c,*.hpp,*.hh,*.h set spelllang=en_gb
 au BufEnter *.cxx,*.cpp,*.cc,*.c,*.hpp,*.hh,*.h call AddCppSyntax()
 au BufEnter *.cxx,*.cpp,*.cc,*.c,*.hpp,*.hh,*.h,*.pl,*.py set list
+au BufEnter *.kicad_pcb,*.kicad_sch set ft=lisp
+au BufEnter *.kicad_prl,*.kicad_pro set ft=json
 au Syntax cpp set spelllang=en_gb
 au Syntax cpp call AddCppSyntax()
 au Syntax cpp set list
@@ -1154,7 +1156,7 @@ au BufNewFile,BufNew,BufRead /home/lbt/*.cpp,/home/lbt/*.h,/home/lbt/*.hpp,/home
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* set dir=/tmp//
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* noswapfile
 
-let g:ollama_host = 'http://localhost:11434'
+let g:ollama_host = 'http://10.0.1.204:11434'
 
 let g:ollama_chat_model = 'qwen2.5-coder:7b-instruct-q6_K'
 let g:ollama_model = 'qwen2.5-coder:7b-instruct-q6_K'
