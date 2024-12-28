@@ -69,7 +69,10 @@ ccdb = {}
 
 for x in cdb:
 #    print("x = '%s'" % (x,) )
-    cmd = x["command"]
+    try:
+        cmd = x["command"]
+    except KeyError:
+        cmd = " ".join(x["arguments"])
     file= x["file"]
     cc = compile_command( cmd, file )
     ccdb[cc.file] = cc
