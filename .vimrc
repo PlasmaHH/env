@@ -624,11 +624,11 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_key_list_stop_completion = ['<C-y>', '<Enter>']
 
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_echo_current_diagnostic = 0
+let g:ycm_enable_diagnostic_highlighting = 1
 
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_complete_in_comments = 1
@@ -637,14 +637,25 @@ let g:ycm_server_python_interpreter = "/usr/bin/python3"
 let g:ycm_python_binary_path = "/usr/bin/python3"
 let g:ycm_ultisnips_completer = 1
 let g:ycm_use_ultisnips_completer = 1
-let g:ycm_max_num_candidates = 42
+"let g:ycm_max_num_candidates = 42
 let g:ycm_max_num_identifier_candidates = 10
+let g:ycm_clear_inlay_hints_in_insert_mode = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
 
 let g:ycm_enable_inlay_hints = 1
-let g:ycm_echo_current_diagnostic = 1
+let g:ycm_echo_current_diagnostic = 'virtual-text'
 let g:ycm_enable_semantic_highlighting=1
+let g:ycm_update_diagnostics_in_insert_mode = 0
+let g:ycm_semantic_triggers =  { 'c,cpp,objc': [ 're!\w{3}', '_' ],}
+
+" XXX Adapt ycm confg py so we parse properly invocations from IAR and fake this to execute? We can somehow use this to
+" force using gcc headers alwasy isntead of clangs own?
+"let g:ycm_clangd_args=['-query-driver=arm-none-eabi-g++']
+let g:ycm_clangd_args=['-header-insertion-decorators', '-completion-style=detailed', '--all-scopes-completion']
 
 let g:ycm_extra_conf_globlist = [ '/home/lbt/git/nextgen*/*', '/home/lbt/git/alt.tools/*' ]
+
+"autocmd CompleteDone * if pumvisible() == 0 | call feedkeys("\<C-y>", 'n') | endif
 
 
 nnoremap <S-F10> :YcmCompleter GoToReferences<CR>
@@ -1156,7 +1167,7 @@ au BufNewFile,BufNew,BufRead /home/lbt/*.cpp,/home/lbt/*.h,/home/lbt/*.hpp,/home
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* set dir=/tmp//
 "autocmd BufNewFile,BufRead,BufReadPre,BufAdd,BufNew ~/git/devdoc/docs/* noswapfile
 
-let g:ollama_host = 'http://10.0.1.204:11434'
+let g:ollama_host = 'http://127.0.0.1:11434'
 
 let g:ollama_chat_model = 'qwen2.5-coder:7b-instruct-q6_K'
 let g:ollama_model = 'qwen2.5-coder:7b-instruct-q6_K'
