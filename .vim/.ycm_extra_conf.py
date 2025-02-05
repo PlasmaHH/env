@@ -23,8 +23,7 @@ def win2wsl( p ):
 thispath = os.getcwd()
 ccommands = thispath + "/compile_commands.json"
 
-database = ycm_core.CompilationDatabase( thispath )
-log(f"{database=}")
+#log(f"{database=}")
 
 # TODO add automatic reloading after something in VS changed
 oldpath = ""
@@ -50,7 +49,12 @@ else:
     with open(ccommands) as cfile:
         cdb = json.load(cfile)
 
-default_flags = [ "--driver-mode=g++", "-Wall", "-Wextra","-std=gnu++2c" ]
+database = ycm_core.CompilationDatabase( os.path.dirname(ccommands) )
+
+
+
+default_iar_flags = [ "--driver-mode=g++", "-Wall", "-Wextra","-std=gnu++2c", "-D__CEL_INCLUDE_INTERNAL__=1", "-D__CEL_HW_UART_H_=1", "--target=arm-none-eabi" ]
+default_gcc_flags = [ "-Wall", "-Wextra","-std=gnu++2c", "-D__GNU__=1", "-D__CEL_INCLUDE_INTERNAL__=1", "-D__CEL_HW_UART_H_=1" ]
 
 class compile_command:
 
@@ -60,23 +64,42 @@ class compile_command:
         cmd = win2wsl(cmd)
         cmd = shlex.split(cmd)
         self.flags = []
-        self.flags.append( cmd[0] )
-        self.flags += copy.copy(default_flags)
-        for c in cmd:
-            match c:
-                case c if c.startswith("-I"):
-                    self.flags.append(c)
-                case c if c.startswith("-D"):
-                    self.flags.append(c)
-                case c if c.startswith("-W"):
-                    self.flags.append(c)
+        self.db_flags = []
+        # Take gcc flags verbatim
+        if( cmd[0].endswith("gcc") or cmd[0].endswith("g++") ):
+            compilation_info = database.GetCompilationInfoForFile( file )
+            self.db_flags = compilation_info.compiler_flags_
+#            log(f"{self.file=}")
+#            log(f"{compilation_info.compiler_flags_=}")
+            self.flags = [ compilation_info.compiler_flags_[0] ]
+            self.flags += copy.copy(default_gcc_flags)
+            self.flags += list(compilation_info.compiler_flags_[1:])
+            bcmd = os.path.basename( cmd[0] )
+            # gcc/g++ with a prefix
+            if( len(bcmd) > 4 ):
+                target = bcmd[:-4]
+                self.flags.append(f"--target={target}")
+
+        # Translate IAR flags as good as possible
+        else:
+            if( file.endswith(".c") ):
+                self.flags.append( "arm-none-eabi-gcc")
+                self.flags.append("-xc")
+            else:
+                self.flags.append( "arm-none-eabi-g++")
+                self.flags.append("-xc++")
+            self.flags += copy.copy(default_iar_flags)
+            for c in cmd:
+                match c:
+                    case c if c.startswith("-I"):
+                        self.flags.append(c)
+                    case c if c.startswith("-D"):
+                        self.flags.append(c)
+                    case c if c.startswith("-W"):
+                        self.flags.append(c)
 #                case _:
 #                    print("c = '%s'" % (c,) )
-        if( file.endswith(".c") ):
-            self.flags.append("-xc")
-        else:
-            self.flags.append("-xc++")
-        self.flags.append(f"-c")
+#        self.flags.append(f"-c")
 
 ccdb = {}
 
@@ -98,14 +121,33 @@ for x in cdb:
 def Settings( **kwargs ):
     filename = kwargs["filename"]
     cc=ccdb.get(filename,None)
-#    log(f"Settings({kwargs=})")
+    log(f"Settings({kwargs=})")
+
+    # XXX Figure out if we are in a gcc or IAR build case and only in the gcc do this
+    if kwargs.get("language") == 'cfamily' and False:
+        DIR_OF_THIS_SCRIPT = os.path.abspath( os.path.dirname( __file__ ) )
+        cmake_commands = ccommands
+#        cmake_commands = os.path.join( DIR_OF_THIS_SCRIPT, 'build', 'compile_commands.json')
+        log(f"{cmake_commands=}")
+        if os.path.exists( cmake_commands ):
+            return {
+                    'ls': {
+                        'compilationDatabasePath': os.path.dirname( cmake_commands )
+                        }
+                    }
+
+#    log(f"{cc=}")
 #    log("filename = '%s'" % (filename,) )
 #    compilation_info = database.GetCompilationInfoForFile( filename )
 #    log(f"{compilation_info=}")
 #    log(f"{compilation_info.compiler_flags_=}")
 #    return { "flags" : compilation_info.compiler_flags_ }
     if( cc is not None ): # Compile command foud in DB
-        log(" ".join(cc.flags))
+#        cc.flags=['/bin/arm-none-eabi-g++',"-mtune=cortex-m33" ]
+#        log(f"{cc.flags=}")
+        cc.flags = list(cc.db_flags)
+#        log(f"{cc.flags=}")
+#        log(" ".join(cc.flags))
 #        log(str(cc))
         return { "flags" : cc.flags }
 
@@ -114,13 +156,19 @@ def Settings( **kwargs ):
         cppfile += ".cpp"
 #        log("cppfile = '%s'" % (cppfile,) )
         cc = ccdb.get(cppfile)
+#        log(f"{cc=}")
         if( cc is not None ):
             return { "flags" : cc.flags }
     # No cpp file found that coresponds to the header...
     if( len(ccdb) == 0 ): # Not a single command known...
-        return { "flags" : compile_command("","").flags } # Use a default version of the flags
+        return { "flags" : compile_command("","").flags + [ "-xc++" ] } # Use a default version of the flags
     else: # there are some, just take the first and the flags of it, possibly all are the same anyways
         cc = next(iter(ccdb.values()))
+        for allc in ccdb.values():
+            if( allc.file.endswith(".cpp") or allc.file.endswith(".cxx") ):
+                cc = allc
+                break
+        log(f"{cc.flags=}")
         return { "flags" : cc.flags }
 
     return {}

@@ -651,7 +651,7 @@ let g:ycm_semantic_triggers =  { 'c,cpp,objc': [ 're!\w{3}', '_' ],}
 " XXX Adapt ycm confg py so we parse properly invocations from IAR and fake this to execute? We can somehow use this to
 " force using gcc headers alwasy isntead of clangs own?
 "let g:ycm_clangd_args=['-query-driver=arm-none-eabi-g++']
-let g:ycm_clangd_args=['-header-insertion-decorators', '-completion-style=detailed', '--all-scopes-completion','-query-driver=/**','--background-index']
+let g:ycm_clangd_args=['-header-insertion-decorators', '-completion-style=detailed', '--all-scopes-completion','-query-driver=/**','--background-index','--log=verbose']
 
 let g:ycm_extra_conf_globlist = [ '/home/lbt/git/nextgen*/*', '/home/lbt/git/alt.tools/*' ]
 
