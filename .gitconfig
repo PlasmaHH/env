@@ -42,6 +42,7 @@
     lola = !git lol --all $1
     root = rev-parse --show-toplevel
     tagv = for-each-ref --format '%(refname) %09 %(taggerdate) %(subject) %(taggeremail)' refs/tags  --sort=taggerdate
+    uref = update-ref refs/heads/develop refs/remotes/origin/develop
 
 [rerere]
 	enabled = 1
