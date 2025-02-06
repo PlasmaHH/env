@@ -161,7 +161,7 @@ def Settings( **kwargs ):
             return { "flags" : cc.flags }
     # No cpp file found that coresponds to the header...
     if( len(ccdb) == 0 ): # Not a single command known...
-        return { "flags" : compile_command("","").flags + [ "-xc++" ] } # Use a default version of the flags
+        return { "flags" : default_gcc_flags + [ "-xc++" ] } # Use a default version of the flags
     else: # there are some, just take the first and the flags of it, possibly all are the same anyways
         cc = next(iter(ccdb.values()))
         for allc in ccdb.values():
