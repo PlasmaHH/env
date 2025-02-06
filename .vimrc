@@ -214,12 +214,12 @@ au BufLeave *.tex let &tw=b:tw
 au BufLeave *.tex let &formatoptions=b:formatoptions
 au BufLeave *.tex let &comments=b:comments
 au BufEnter * call PreviewSpell()
-au BufEnter *.cxx,*.cpp,*.cc,*.c,*.hpp,*.hh,*.h set spelllang=en_gb
+au BufEnter *.cxx,*.cpp,*.cc,*.c,*.hpp,*.hh,*.h set spelllang=en_gb,de_de
 au BufEnter *.cxx,*.cpp,*.cc,*.c,*.hpp,*.hh,*.h call AddCppSyntax()
 au BufEnter *.cxx,*.cpp,*.cc,*.c,*.hpp,*.hh,*.h,*.pl,*.py set list
 au BufEnter *.kicad_pcb,*.kicad_sch set ft=lisp
 au BufEnter *.kicad_prl,*.kicad_pro set ft=json
-au Syntax cpp set spelllang=en_gb
+au Syntax cpp set spelllang=en_gb,de_de
 au Syntax cpp call AddCppSyntax()
 au Syntax cpp set list
 "au Syntax python call AddPythonSyntax()
