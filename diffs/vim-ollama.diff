@@ -32,16 +32,3 @@ index 98554cd..9aa242c 100644
  endfunction
  
  " Create autocommand group
-diff --git a/.vim/bundle/vim-ollama/python/OllamaLogger.py b/.vim/bundle/vim-ollama/python/OllamaLogger.py
-index 0b6b3ed..86bb7af 100644
---- a/.vim/bundle/vim-ollama/python/OllamaLogger.py
-+++ b/.vim/bundle/vim-ollama/python/OllamaLogger.py
-@@ -17,7 +17,7 @@ class OllamaLogger:
- 
-     def __init__(self, log_filename, log_level=logging.ERROR):
-         # Create a logger
--        self.logger = logging.getLogger()
-+        self.logger = logging.getLogger(__name__)
-         self.logger.setLevel(log_level)
- 
-         # Attempt to create a log directory and set up file logging
