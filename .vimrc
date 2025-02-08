@@ -659,7 +659,7 @@ let g:ycm_extra_conf_globlist = [ '/home/lbt/git/nextgen*/*', '/home/lbt/git/alt
 
 
 nnoremap <S-F10> :YcmCompleter GoToReferences<CR>
-nnoremap <C-F10> :YcmCompleter RecatorRename<SPACE>
+nnoremap <C-F10> :YcmCompleter RefactorRename<SPACE>
 nnoremap <S-F11> :YcmCompleter GoToInclude<CR>
 nnoremap <C-F11> :YcmCompleter GoToAlternateFile<CR>
 nnoremap <S-F12> :YcmCompleter GoToDefinition<CR>
