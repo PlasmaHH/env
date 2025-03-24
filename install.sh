@@ -4,14 +4,14 @@ ENVDIR="$(pwd)"
 
 for i in diffs/*.diff;
 do
-	patch -f -p1 --dry-run < $i &> /dev/null
+	patch -f -N -p1 --dry-run < $i &> /dev/null
 	if [[ $? == 0 ]];
 	then
 		patch -p1 < $i
 	fi
 #    patch -R -p1 < $i
 done
-
+exit
 
 for cmd in bat gdb vim git git ctags;
 do
