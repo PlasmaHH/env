@@ -1116,7 +1116,7 @@ au VimEnter * silent call doge#install({ 'headless': 1 })
 let g:doge_doxygen_settings = {
     \    'char' : '\'
     \}
-let g:doge_doc_standard_python = "doxygen"
+let g:doge_doc_standard_python = "google"
 
 com! CheckHighlightUnderCursor echo {l,c,n ->
         \   'hi<'    . synIDattr(synID(l, c, 1), n)             . '> '
@@ -1177,6 +1177,7 @@ let g:ollama_fim_suffix = '<|fim_suffix|>'
 
 packadd helptoc
 packadd matchit
+packadd editorconfig
 "let g:ale_set_quickfix = 0
 "let g:ale_set_loclist = 0
 "let g:ale_open_list = 1
