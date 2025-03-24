@@ -241,21 +241,39 @@ cdr() {
     cd "${root}"
 }
 
+function venv_status()
+{
+	VDIR="$1"
+	NUM_ALL=$(${VDIR}pip list --format freeze | wc -l)
+	NUM_EDIT=$(${VDIR}pip list -e --format freeze | wc  -l)
+	NUM_LOCL=$(${VDIR}pip list -l --format freeze | wc  -l)
+	NUM_USER=$(${VDIR}pip list --user --format freeze | wc  -l)
+	echo "${NUM_ALL} pip packages, ${NUM_EDIT} editable, ${NUM_LOCL} in venv, ${NUM_USER} for current user"
+}
+
 function venv()
 {
     TENV=$1
 
     if [[ -z "${TENV}" ]];
     then
+		ACTIVE_VENV=$(basename "${VIRTUAL_ENV}")
 		# just list
 		echo "Installed virtual environments:"
 		for e in ~/.venv/*;
 		do
 			if [[ -d "${e}" ]];
 			then
-			VNAME=$(basename ${e})
-			VER=$(${e}/bin/python3 --version)
-			echo -e "${VNAME}\t${VER}"
+				VNAME=$(basename ${e})
+				VPRE=""
+				if [[ "${VNAME}" == "${ACTIVE_VENV}" ]];
+				then
+					VPRE="*"
+				fi
+				VER=$(${e}/bin/python3 --version)
+				STATUS=$(venv_status "${e}/bin/")
+				#echo -e "${VPRE}${VNAME}\t${VER}\t${STATUS}"
+				printf "%-16s %-16s %s\n" "${VPRE}${VNAME}" "${VER}" "${STATUS}"
 			fi
 		done
 	else
@@ -270,6 +288,7 @@ function venv()
 			echo "Activated environment ${TENV}"
 		fi
 		python --version
+		venv_status
     fi
 }
 
