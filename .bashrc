@@ -247,28 +247,29 @@ function venv()
 
     if [[ -z "${TENV}" ]];
     then
-	# just list
-	echo "Installed virtual environments:"
-	for e in ~/.venv/*;
-	do
-	    if [[ -d "${e}" ]];
-	    then
-		VNAME=$(basename ${e})
-		VER=$(${e}/bin/python3 --version)
-		echo -e "${VNAME}\t${VER}"
-	    fi
-	done
-    else
-	ACTIVATE=~/".venv/${TENV}/bin/activate"
-	if [[ ! -f "${ACTIVATE}" ]];
-	then
-	    echo "Unknown venv ${TENV}, creating with current python3"
-		python3 -m venv ~/".venv/${TENV}"
-	    source "${ACTIVATE}"
+		# just list
+		echo "Installed virtual environments:"
+		for e in ~/.venv/*;
+		do
+			if [[ -d "${e}" ]];
+			then
+			VNAME=$(basename ${e})
+			VER=$(${e}/bin/python3 --version)
+			echo -e "${VNAME}\t${VER}"
+			fi
+		done
 	else
-	    source "${ACTIVATE}"
-	    echo "Activated environment ${TENV}"
-	fi
+		ACTIVATE=~/".venv/${TENV}/bin/activate"
+		if [[ ! -f "${ACTIVATE}" ]];
+		then
+			echo "Unknown venv ${TENV}, creating with current python3"
+			python3 -m venv --system-site-packages ~/".venv/${TENV}"
+			source "${ACTIVATE}"
+		else
+			source "${ACTIVATE}"
+			echo "Activated environment ${TENV}"
+		fi
+		python --version
     fi
 }
 
