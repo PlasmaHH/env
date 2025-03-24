@@ -121,14 +121,14 @@ for x in cdb:
 def Settings( **kwargs ):
     filename = kwargs["filename"]
     cc=ccdb.get(filename,None)
-    log(f"Settings({kwargs=})")
+#    log(f"Settings({kwargs=})")
 
     # XXX Figure out if we are in a gcc or IAR build case and only in the gcc do this
     if kwargs.get("language") == 'cfamily' and False:
         DIR_OF_THIS_SCRIPT = os.path.abspath( os.path.dirname( __file__ ) )
         cmake_commands = ccommands
 #        cmake_commands = os.path.join( DIR_OF_THIS_SCRIPT, 'build', 'compile_commands.json')
-        log(f"{cmake_commands=}")
+#        log(f"{cmake_commands=}")
         if os.path.exists( cmake_commands ):
             return {
                     'ls': {
@@ -168,7 +168,7 @@ def Settings( **kwargs ):
             if( allc.file.endswith(".cpp") or allc.file.endswith(".cxx") ):
                 cc = allc
                 break
-        log(f"{cc.flags=}")
+#        log(f"{cc.flags=}")
         return { "flags" : cc.flags }
 
     return {}
