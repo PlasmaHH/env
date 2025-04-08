@@ -11,7 +11,7 @@ do
 	fi
 #    patch -R -p1 < $i
 done
-exit
+
 
 for cmd in bat gdb vim git git ctags;
 do

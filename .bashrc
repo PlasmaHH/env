@@ -241,6 +241,26 @@ cdr() {
     cd "${root}"
 }
 
+function iecho()
+{
+	if [[ $- != *i* ]];
+	then
+		return
+	fi
+	echo $@
+}
+
+function iprintf()
+{
+	if [[ $- != *i* ]];
+	then
+		return
+	fi
+	printf $@
+}
+
+
+
 function venv_status()
 {
 	VDIR="$1"
@@ -248,8 +268,9 @@ function venv_status()
 	NUM_EDIT=$(${VDIR}pip list -e --format freeze | wc  -l)
 	NUM_LOCL=$(${VDIR}pip list -l --format freeze | wc  -l)
 	NUM_USER=$(${VDIR}pip list --user --format freeze | wc  -l)
-	echo "${NUM_ALL} pip packages, ${NUM_EDIT} editable, ${NUM_LOCL} in venv, ${NUM_USER} for current user"
+	iecho "${NUM_ALL} pip packages, ${NUM_EDIT} editable, ${NUM_LOCL} in venv, ${NUM_USER} for current user"
 }
+
 
 function venv()
 {
@@ -259,7 +280,7 @@ function venv()
     then
 		ACTIVE_VENV=$(basename "${VIRTUAL_ENV}")
 		# just list
-		echo "Installed virtual environments:"
+		iecho "Installed virtual environments:"
 		for e in ~/.venv/*;
 		do
 			if [[ -d "${e}" ]];
@@ -273,21 +294,24 @@ function venv()
 				VER=$(${e}/bin/python3 --version)
 				STATUS=$(venv_status "${e}/bin/")
 				#echo -e "${VPRE}${VNAME}\t${VER}\t${STATUS}"
-				printf "%-16s %-16s %s\n" "${VPRE}${VNAME}" "${VER}" "${STATUS}"
+				iprintf "%-16s %-16s %s\n" "${VPRE}${VNAME}" "${VER}" "${STATUS}"
 			fi
 		done
 	else
 		ACTIVATE=~/".venv/${TENV}/bin/activate"
 		if [[ ! -f "${ACTIVATE}" ]];
 		then
-			echo "Unknown venv ${TENV}, creating with current python3"
+			iecho "Unknown venv ${TENV}, creating with current python3"
 			python3 -m venv --system-site-packages ~/".venv/${TENV}"
 			source "${ACTIVATE}"
 		else
 			source "${ACTIVATE}"
-			echo "Activated environment ${TENV}"
+			iecho "Activated environment ${TENV}"
 		fi
-		python --version
+		if [[ $- == *i* ]];
+		then
+			python --version
+		fi
 		venv_status
     fi
 }
