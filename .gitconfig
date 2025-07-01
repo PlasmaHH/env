@@ -42,7 +42,7 @@
     lola = !git-foresta --style=10 --all --
     root = rev-parse --show-toplevel
     tagv = for-each-ref --format '%(refname) %09 %(taggerdate) %(subject) %(taggeremail)' refs/tags  --sort=taggerdate
-    uref = update-ref refs/heads/develop refs/remotes/origin/develop
+    uref = !git update-ref refs/heads/$1 refs/remotes/origin/$1
 #    logd = "!git log --full-history --follow --diff-filter=D -- \"$1\" #"
     logd = log --full-history --follow --diff-filter=D --
     sfe = submodule foreach
