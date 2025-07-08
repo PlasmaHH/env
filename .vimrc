@@ -1174,6 +1174,7 @@ let g:ollama_model = 'qwen2.5-coder:7b-instruct-q6_K'
 let g:ollama_fim_prefix = '<|fim_prefix|>'
 let g:ollama_fim_middle = '<|fim_middle|>'
 let g:ollama_fim_suffix = '<|fim_suffix|>'
+let g:ollama_no_maps = 1
 
 packadd helptoc
 packadd matchit
