@@ -256,7 +256,7 @@ function iprintf()
 	then
 		return
 	fi
-	printf $@
+	printf "$@"
 }
 
 
@@ -316,6 +316,6 @@ function venv()
     fi
 }
 
-
+eval $(keychain -q --eval)
 
 # vim: tabstop=4 shiftwidth=4 noexpandtab
