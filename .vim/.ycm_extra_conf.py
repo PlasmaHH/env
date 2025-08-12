@@ -121,15 +121,16 @@ for x in cdb:
 def Settings( **kwargs ):
     filename = kwargs["filename"]
     cc=ccdb.get(filename,None)
-#    log(f"Settings({kwargs=})")
+    log(f"Settings({kwargs=})")
 
     # XXX Figure out if we are in a gcc or IAR build case and only in the gcc do this
-    if kwargs.get("language") == 'cfamily' and False:
+    if kwargs.get("language") == 'cfamily' and True:
         DIR_OF_THIS_SCRIPT = os.path.abspath( os.path.dirname( __file__ ) )
         cmake_commands = ccommands
 #        cmake_commands = os.path.join( DIR_OF_THIS_SCRIPT, 'build', 'compile_commands.json')
 #        log(f"{cmake_commands=}")
         if os.path.exists( cmake_commands ):
+            log("returning compile database")
             return {
                     'ls': {
                         'compilationDatabasePath': os.path.dirname( cmake_commands )
@@ -148,7 +149,7 @@ def Settings( **kwargs ):
         cc.flags = list(cc.db_flags)
 #        log(f"{cc.flags=}")
 #        log(" ".join(cc.flags))
-#        log(str(cc))
+        log(f"return first cc not none from cache {cc}")
         return { "flags" : cc.flags }
 
     if( filename.endswith(".h") ): # Check if there is a cppfile with the same name and path
@@ -156,11 +157,13 @@ def Settings( **kwargs ):
         cppfile += ".cpp"
 #        log("cppfile = '%s'" % (cppfile,) )
         cc = ccdb.get(cppfile)
-#        log(f"{cc=}")
+        log(f"{cc=}")
         if( cc is not None ):
+            log(f"Return for .h from .cpp {cc}")
             return { "flags" : cc.flags }
     # No cpp file found that coresponds to the header...
     if( len(ccdb) == 0 ): # Not a single command known...
+        log(f"ccdb empty, return all default {default_gcc_flags}")
         return { "flags" : default_gcc_flags + [ "-xc++" ] } # Use a default version of the flags
     else: # there are some, just take the first and the flags of it, possibly all are the same anyways
         cc = next(iter(ccdb.values()))
@@ -169,8 +172,10 @@ def Settings( **kwargs ):
                 cc = allc
                 break
 #        log(f"{cc.flags=}")
+        log(f"return arbitrary file from database {cc}")
         return { "flags" : cc.flags }
 
+    log("return nothing, no idea what that thing is")
     return {}
 
 #xx=Settings(filename="/home/lbt/git/nextgen/Quellcode/MainController/assert_handling.cpp")

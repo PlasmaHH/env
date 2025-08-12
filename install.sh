@@ -96,6 +96,7 @@ popd
 
 cd ~/bin/
 ln -sf ${ENVDIR}/bin/* .
+ln -sf ${ENVDIR}/git/git-foresta/git-foresta .
 
 # TODO
 # ~/.vim cannot be overwritten when directory
