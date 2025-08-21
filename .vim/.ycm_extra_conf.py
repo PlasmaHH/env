@@ -23,26 +23,34 @@ def win2wsl( p ):
 thispath = os.getcwd()
 ccommands = thispath + "/compile_commands.json"
 
-#log(f"{database=}")
 
+log(f"{ccommands=}")
 # TODO add automatic reloading after something in VS changed
 oldpath = ""
 while( oldpath != thispath ):
-    try:
-#        log(f"{thispath=}")
-        with open(thispath + "/Build/active_build_dir.txt") as f:
-            active_builddir = f.read()
-#        log(f"{active_builddir=}")
-        active_builddir = win2wsl(active_builddir).strip()
-#        log(f"{active_builddir=}")
-        ccommands = active_builddir + "/compile_commands.json"
-        break
-    except FileNotFoundError:
+    log(f"{oldpath=}, {thispath=}")
+
+    for x in [ "Build", "build" ]:
+        try:
+            log(f"{thispath=}")
+            adpath = f"{thispath}/{x}/active_build_dir.txt"
+            log(f"{adpath=}")
+            with open(adpath) as f:
+                active_builddir = f.read()
+            log(f"{active_builddir=}")
+            active_builddir = win2wsl(active_builddir).strip()
+            log(f"{active_builddir=}")
+            ccommands = active_builddir + "/compile_commands.json"
+            oldpath = thispath
+            break
+        except FileNotFoundError:
+            pass
+    else:
         oldpath = thispath
         thispath = os.path.dirname(thispath)
 
 cdir = os.path.dirname(ccommands)
-#log(f"{ccommands=}")
+log(f"{ccommands=}")
 if( not os.path.isfile(ccommands) ):
     cdb=[]
 else:
@@ -50,11 +58,11 @@ else:
         cdb = json.load(cfile)
 
 database = ycm_core.CompilationDatabase( os.path.dirname(ccommands) )
-
+log(f"{database=}")
 
 
 default_iar_flags = [ "--driver-mode=g++", "-Wall", "-Wextra","-std=gnu++2c", "-D__CEL_INCLUDE_INTERNAL__=1", "-D__CEL_HW_UART_H_=1", "--target=arm-none-eabi" ]
-default_gcc_flags = [ "-Wall", "-Wextra","-std=gnu++2c", "-D__GNU__=1", "-D__CEL_INCLUDE_INTERNAL__=1", "-D__CEL_HW_UART_H_=1" ]
+default_gcc_flags = [ "g++", "--driver-mode=g++", "-x", "c++", "-Wall", "-Wextra","-std=gnu++2c", "-D__GNU__=1", "-D__CEL_INCLUDE_INTERNAL__=1", "-D__CEL_HW_UART_H_=1" ]
 
 class compile_command:
 
@@ -121,6 +129,7 @@ for x in cdb:
 def Settings( **kwargs ):
     filename = kwargs["filename"]
     cc=ccdb.get(filename,None)
+    log("")
     log(f"Settings({kwargs=})")
 
     # XXX Figure out if we are in a gcc or IAR build case and only in the gcc do this
